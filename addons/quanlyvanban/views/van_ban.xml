@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_van_ban_form" model="ir.ui.view">
+            <field name="name">van_ban.form</field>
+            <field name="model">van_ban</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_gui_duyet" string="Gửi Duyệt" type="object" class="oe_highlight" states="new"/>
+                        <button name="action_phe_duyet" string="Phê Duyệt" type="object" class="oe_highlight" states="processing"/>
+                        <button name="action_tu_choi" string="Từ Chối" type="object" states="processing"/>
+                        <button name="action_hoan_tat" string="Hoàn Tất" type="object" class="oe_highlight" states="approved"/>
+                        <field name="trang_thai" widget="statusbar" statusbar_visible="new,processing,approved,completed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="so_hieu_van_ban"/>
+                                <field name="ten_van_ban"/>
+                                <field name="loai_van_ban_id"/>
+                                <field name="ngay_tao"/>
+                                <field name="han_xu_ly"/>
+                            </group>
+                            <group>
+                                <field name="nhan_su_xu_li_id"/>
+                                <field name="phong_ban_id"/>
+                                <field name="nguoi_tao"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Nội dung">
+                                <group>
+                                    <field name="noi_gui_den" widget="text" colspan="2"/>
+                                    <field name="noi_dung" widget="text" colspan="2"/>
+                                    <field name="mo_ta" widget="text" colspan="2"/>
+                                </group>
+                            </page>
+                            <page string="Kết quả">
+                                <group>
+                                    <field name="ket_qua_xu_ly" widget="text" colspan="2"/>
+                                    <field name="ngay_hoan_tat"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_van_ban_tree" model="ir.ui.view">
+            <field name="name">van_ban.tree</field>
+            <field name="model">van_ban</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="so_hieu_van_ban"/>
+                    <field name="ten_van_ban"/>
+                    <field name="loai_van_ban_id"/>
+                    <field name="nhan_su_xu_li_id"/>
+                    <field name="phong_ban_id"/>
+                    <field name="ngay_tao"/>
+                    <field name="han_xu_ly"/>
+                    <field name="trang_thai" widget="badge" 
+                           decoration-info="trang_thai=='new'" 
+                           decoration-warning="trang_thai=='processing'" 
+                           decoration-success="trang_thai in ('approved','completed')" 
+                           decoration-danger="trang_thai=='rejected'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_van_ban_search" model="ir.ui.view">
+            <field name="name">van_ban.search</field>
+            <field name="model">van_ban</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="so_hieu_van_ban"/>
+                    <field name="ten_van_ban"/>
+                    <field name="loai_van_ban_id"/>
+                    <field name="nhan_su_xu_li_id"/>
+                    <separator/>
+                    <filter name="new" string="Mới tạo" domain="[('trang_thai', '=', 'new')]"/>
+                    <filter name="processing" string="Đang xử lý" domain="[('trang_thai', '=', 'processing')]"/>
+                    <filter name="approved" string="Đã phê duyệt" domain="[('trang_thai', '=', 'approved')]"/>
+                    <filter name="completed" string="Hoàn tất" domain="[('trang_thai', '=', 'completed')]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_loai_van_ban" string="Loại văn bản" context="{'group_by': 'loai_van_ban_id'}"/>
+                        <filter name="group_nhan_su" string="Nhân sự xử lý" context="{'group_by': 'nhan_su_xu_li_id'}"/>
+                        <filter name="group_phong_ban" string="Phòng ban" context="{'group_by': 'phong_ban_id'}"/>
+                        <filter name="group_trang_thai" string="Trạng thái" context="{'group_by': 'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_van_ban" model="ir.actions.act_window">
+            <field name="name">Văn bản</field>
+            <field name="res_model">van_ban</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
