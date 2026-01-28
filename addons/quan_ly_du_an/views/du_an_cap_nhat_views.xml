@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View - Cập nhật tiến độ -->
+    <record id="view_du_an_cap_nhat_form" model="ir.ui.view">
+        <field name="name">du_an.cap_nhat.form</field>
+        <field name="model">du_an.cap_nhat</field>
+        <field name="arch" type="xml">
+            <form string="Cập nhật tiến độ dự án">
+                <header>
+                    <button name="action_view_du_an" string="Xem Dự án" 
+                            type="object" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" 
+                           statusbar_visible="on_track,at_risk,off_track,on_hold"
+                           clickable="True"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Báo cáo cập nhật tuần/tháng..."/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="du_an_id" options="{'no_create': True}"/>
+                            <field name="ngay_cap_nhat"/>
+                            <field name="nguoi_cap_nhat_id"/>
+                        </group>
+                        <group>
+                            <field name="progress" widget="progressbar"/>
+                            <field name="status" invisible="1"/>
+                            <field name="color" invisible="1"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Nội dung cập nhật">
+                            <group>
+                                <field name="noi_dung" widget="html" placeholder="Tóm tắt tình hình dự án..."/>
+                            </group>
+                        </page>
+                        
+                        <page string="Công việc">
+                            <group>
+                                <group string="Đã hoàn thành">
+                                    <field name="cong_viec_da_hoan_thanh" nolabel="1" 
+                                           placeholder="Liệt kê các công việc đã hoàn thành trong kỳ..."/>
+                                </group>
+                                <group string="Đang thực hiện">
+                                    <field name="cong_viec_dang_thuc_hien" nolabel="1" 
+                                           placeholder="Các công việc đang trong quá trình thực hiện..."/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="ke_hoach_tuan_toi" 
+                                       placeholder="Kế hoạch công việc cho tuần/tháng tới..."/>
+                            </group>
+                        </page>
+                        
+                        <page string="Vấn đề &amp; Giải pháp">
+                            <group>
+                                <field name="van_de" 
+                                       placeholder="Các vấn đề, trở ngại đang gặp phải..."/>
+                                <field name="giai_phap" 
+                                       placeholder="Giải pháp đề xuất để xử lý vấn đề..."/>
+                                <field name="rui_ro_moi" 
+                                       placeholder="Rủi ro mới phát sinh trong kỳ..."/>
+                            </group>
+                        </page>
+                        
+                        <page string="Ngân sách &amp; Milestones">
+                            <group>
+                                <group string="Ngân sách">
+                                    <field name="ngan_sach_da_su_dung"/>
+                                    <field name="ngan_sach_du_kien_con_lai"/>
+                                </group>
+                                <group string="Milestones đạt được">
+                                    <field name="milestones_reached" widget="many2many_tags"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <page string="Tài liệu đính kèm">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View - Cập nhật tiến độ -->
+    <record id="view_du_an_cap_nhat_tree" model="ir.ui.view">
+        <field name="name">du_an.cap_nhat.tree</field>
+        <field name="model">du_an.cap_nhat</field>
+        <field name="arch" type="xml">
+            <tree string="Cập nhật tiến độ"
+                  decoration-success="status == 'on_track'"
+                  decoration-warning="status == 'at_risk'"
+                  decoration-danger="status == 'off_track'"
+                  decoration-muted="status == 'on_hold'">
+                <field name="ngay_cap_nhat"/>
+                <field name="name"/>
+                <field name="du_an_id"/>
+                <field name="status" widget="badge" 
+                       decoration-success="status == 'on_track'"
+                       decoration-warning="status == 'at_risk'"
+                       decoration-danger="status == 'off_track'"
+                       decoration-info="status == 'on_hold'"/>
+                <field name="progress" widget="progressbar"/>
+                <field name="nguoi_cap_nhat_id"/>
+                <field name="color" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Kanban View - Cập nhật tiến độ -->
+    <record id="view_du_an_cap_nhat_kanban" model="ir.ui.view">
+        <field name="name">du_an.cap_nhat.kanban</field>
+        <field name="model">du_an.cap_nhat</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" default_group_by="status">
+                <field name="name"/>
+                <field name="ngay_cap_nhat"/>
+                <field name="status"/>
+                <field name="progress"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                    <div class="o_secondary">
+                                        <field name="du_an_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_content">
+                                <div>
+                                    <i class="fa fa-calendar"/> <field name="ngay_cap_nhat"/>
+                                </div>
+                                <div class="mt-1">
+                                    <field name="progress" widget="progressbar"/>
+                                </div>
+                                <div class="mt-1">
+                                    <field name="nguoi_cap_nhat_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View - Cập nhật tiến độ -->
+    <record id="view_du_an_cap_nhat_search" model="ir.ui.view">
+        <field name="name">du_an.cap_nhat.search</field>
+        <field name="model">du_an.cap_nhat</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm Cập nhật">
+                <field name="name"/>
+                <field name="du_an_id"/>
+                <field name="nguoi_cap_nhat_id"/>
+                
+                <filter string="Đúng tiến độ" name="on_track" 
+                        domain="[('status', '=', 'on_track')]"/>
+                <filter string="Có rủi ro" name="at_risk" 
+                        domain="[('status', '=', 'at_risk')]"/>
+                <filter string="Chậm tiến độ" name="off_track" 
+                        domain="[('status', '=', 'off_track')]"/>
+                <separator/>
+                <filter string="Tháng này" name="this_month" 
+                        domain="[('ngay_cap_nhat', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d')), ('ngay_cap_nhat', '&lt;=', (context_today() + relativedelta(day=31)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Tuần này" name="this_week" 
+                        domain="[('ngay_cap_nhat', '&gt;=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
+                
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Dự án" name="group_by_du_an" context="{'group_by': 'du_an_id'}"/>
+                    <filter string="Trạng thái" name="group_by_status" context="{'group_by': 'status'}"/>
+                    <filter string="Người cập nhật" name="group_by_nguoi_cap_nhat" context="{'group_by': 'nguoi_cap_nhat_id'}"/>
+                    <filter string="Tháng" name="group_by_month" context="{'group_by': 'ngay_cap_nhat:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action - Cập nhật tiến độ -->
+    <record id="action_du_an_cap_nhat" model="ir.actions.act_window">
+        <field name="name">Cập nhật tiến độ</field>
+        <field name="res_model">du_an.cap_nhat</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_this_month': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo báo cáo cập nhật tiến độ
+            </p>
+            <p>
+                Cập nhật tiến độ giúp theo dõi tình hình dự án và phát hiện sớm các vấn đề.
+            </p>
+        </field>
+    </record>
+</odoo>

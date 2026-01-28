@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Sequence for Dự án -->
+    <record id="seq_du_an" model="ir.sequence">
+        <field name="name">Mã dự án</field>
+        <field name="code">du_an.sequence</field>
+        <field name="prefix">DA</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

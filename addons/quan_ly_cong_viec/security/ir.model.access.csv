@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cong_viec,cong_viec.access,model_cong_viec,base.group_user,1,1,1,1
+access_cong_viec_trang_thai,cong_viec.trang_thai.access,model_cong_viec_trang_thai,base.group_user,1,1,1,1
+access_cong_viec_tag,cong_viec.tag.access,model_cong_viec_tag,base.group_user,1,1,1,1
+access_cong_viec_checklist,cong_viec.checklist.access,model_cong_viec_checklist,base.group_user,1,1,1,1
+access_cong_viec_timesheet,cong_viec.timesheet.access,model_cong_viec_timesheet,base.group_user,1,1,1,1
+access_hieu_suat_nhan_vien,hieu_suat.nhan_vien.access,model_hieu_suat_nhan_vien,base.group_user,1,0,0,0
+access_hieu_suat_du_an,hieu_suat.du_an.access,model_hieu_suat_du_an,base.group_user,1,0,0,0

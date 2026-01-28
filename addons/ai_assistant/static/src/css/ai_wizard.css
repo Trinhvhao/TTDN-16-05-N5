@@ -1,0 +1,98 @@
+/* AI Wizard Styling */
+
+/* Quick Ask Form */
+.o_ai_quick_ask_form .o_form_sheet {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.o_ai_quick_ask_form textarea {
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.o_ai_quick_ask_form textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+/* Radio buttons styling */
+.o_ai_quick_ask_form .o_radio_input {
+    margin-right: 15px;
+}
+
+.o_ai_quick_ask_form .o_radio_item {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #f8f9fa;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.o_ai_quick_ask_form .o_radio_item:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.o_ai_quick_ask_form .o_radio_item input:checked + label {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+}
+
+/* Analysis Form */
+.o_ai_analysis_form .o_form_sheet {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.o_ai_analysis_form .o_field_date {
+    border: 2px solid #e1e8ed;
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+/* Answer box animation */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    animation: slideInUp 0.5s ease-out;
+}
+
+/* Button hover effects */
+.o_ai_quick_ask_form button.btn-primary:hover,
+.o_ai_analysis_form button.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.o_ai_analysis_form button.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* Template question badges */
+.o_ai_quick_ask_form .o_field_widget[name="template_question"] .o_radio_item {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border: none;
+    color: #5a3825;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.o_ai_quick_ask_form .o_field_widget[name="template_question"] .o_radio_item:hover {
+    transform: scale(1.05);
+}

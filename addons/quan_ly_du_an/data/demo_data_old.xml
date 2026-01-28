@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ============================================ -->
+        <!-- DEMO PROJECTS - Dữ liệu mẫu đầy đủ -->
+        <!-- ============================================ -->
+        
+        <!-- 1. Dự án Hoàn thành - Portal Sinh viên -->
+        <record id="demo_du_an_completed_portal" model="du_an">
+            <field name="ten_du_an">Portal Sinh viên FitDNU</field>
+            <field name="mo_ta_ngan">Nâng cấp hệ thống portal quản lý sinh viên với đầy đủ tính năng hiện đại</field>
+            <field name="mo_ta"><![CDATA[
+                <h3>Mục tiêu dự án</h3>
+                <p>Xây dựng hệ thống portal toàn diện cho sinh viên FitDNU với các tính năng:</p>
+                <h4>Tính năng chính:</h4>
+                <ul>
+                    <li><strong>Đăng nhập SSO</strong> - Tích hợp Single Sign-On với Microsoft/Google</li>
+                    <li><strong>Tra cứu điểm thi</strong> - Xem điểm theo từng môn học, học kỳ và tích lũy</li>
+                    <li><strong>Đăng ký học phần</strong> - Đăng ký môn học online với kiểm tra điều kiện tiên quyết</li>
+                    <li><strong>Thanh toán học phí</strong> - Tích hợp VNPay, MoMo, chuyển khoản ngân hàng</li>
+                    <li><strong>Thời khóa biểu</strong> - Xem lịch học, nhận thông báo thay đổi</li>
+                    <li><strong>Tài liệu học tập</strong> - Tải về giáo trình, bài giảng điện tử</li>
+                </ul>
+                <h4>Kết quả đạt được:</h4>
+                <p>✅ 5,000+ sinh viên sử dụng hàng ngày<br/>
+                   ✅ Giảm 70% thời gian đăng ký học phần<br/>
+                   ✅ Tăng 85% tỷ lệ thanh toán học phí đúng hạn</p>
+            ]]></field>
+            <field name="loai_du_an">noi_bo</field>
+            <field name="quan_ly_du_an_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="phong_ban_id" ref="nhan_su.phong_ban_cntt"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=150)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc_du_kien" eval="(datetime.now() - timedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="ngan_sach_du_kien">380000000</field>
+            <field name="ngan_sach_thuc_te">365000000</field>
+            <field name="doanh_thu_du_kien">0</field>
+            <field name="doanh_thu_thuc_te">0</field>
+            <field name="do_uu_tien">3_cao</field>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="tien_do">100.0</field>
+            <field name="muc_do_rui_ro">thap</field>
+            <field name="thanh_vien_ids" eval="[(6, 0, [ref('nhan_su.demo_nhan_vien_1'), ref('nhan_su.demo_nhan_vien_2'), ref('nhan_su.demo_nhan_vien_3'), ref('nhan_su.demo_nhan_vien_4')])]"/>
+            <field name="last_update_status">on_track</field>
+        </record>
+        
+        <!-- 2. Dự án Đang thực hiện - Khách hàng -->
+        <record id="demo_du_an_erp" model="du_an">
+            <field name="ten_du_an">Hệ thống ERP FitDNU</field>
+            <field name="mo_ta_ngan">Phát triển hệ thống quản lý tài nguyên doanh nghiệp toàn diện</field>
+            <field name="mo_ta"><![CDATA[
+                <h3>Tổng quan dự án</h3>
+                <p>Xây dựng hệ thống ERP tích hợp quản lý Nhân sự, Dự án, Công việc và AI Assistant</p>
+                <h4>Modules chính:</h4>
+                <ol>
+                    <li>Module Nhân sự (HRM)</li>
+                    <li>Module Quản lý Dự án</li>
+                    <li>Module Quản lý Công việc</li>
+                    <li>Module AI Assistant</li>
+                </ol>
+                <h4>Công nghệ sử dụng:</h4>
+                <ul>
+                    <li>Odoo Framework 15.0</li>
+                    <li>PostgreSQL Database</li>
+                    <li>Python 3.8+</li>
+                    <li>OpenRouter AI API</li>
+                </ul>
+            ]]></field>
+            <field name="loai_du_an">phat_trien</field>
+            <field name="quan_ly_du_an_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="pho_quan_ly_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="phong_ban_id" ref="nhan_su.phong_ban_cntt"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=60)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc_du_kien" eval="(datetime.now() + timedelta(days=120)).strftime('%Y-%m-%d')"/>
+            <field name="ngan_sach_du_kien">800000000</field>
+            <field name="ngan_sach_thuc_te">280000000</field>
+            <field name="doanh_thu_du_kien">0</field>
+            <field name="do_uu_tien">4_khan_cap</field>
+            <field name="trang_thai">dang_thuc_hien</field>
+            <field name="tien_do">45.0</field>
+            <field name="muc_do_rui_ro">trung_binh</field>
+            <field name="thanh_vien_ids" eval="[(6, 0, [ref('nhan_su.demo_nhan_vien_1'), ref('nhan_su.demo_nhan_vien_2'), ref('nhan_su.demo_nhan_vien_3'), ref('nhan_su.demo_nhan_vien_4')])]"/>
+            <field name="last_update_status">on_track</field>
+        </record>
+
+        <!-- 3. Dự án Website - Đang thực hiện -->
+        <record id="demo_du_an_website" model="du_an">
+            <field name="ten_du_an">Website Thương mại điện tử</field>
+            <field name="mo_ta_ngan">Xây dựng website bán hàng online cho doanh nghiệp vừa và nhỏ</field>
+            <field name="mo_ta"><![CDATA[
+                <h3>Yêu cầu khách hàng</h3>
+                <p>Website TMĐT hiện đại với đầy đủ tính năng mua sắm online</p>
+                <h4>Tính năng:</h4>
+                <ul>
+                    <li>Catalog sản phẩm động</li>
+                    <li>Giỏ hàng &amp; Checkout</li>
+                    <li>Thanh toán online (VNPay, Momo)</li>
+                    <li>Quản lý đơn hàng</li>
+                    <li>CRM khách hàng</li>
+                    <li>Marketing automation</li>
+                </ul>
+            ]]></field>
+            <field name="loai_du_an">khach_hang</field>
+            <field name="quan_ly_du_an_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="phong_ban_id" ref="nhan_su.phong_ban_cntt"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=25)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc_du_kien" eval="(datetime.now() + timedelta(days=65)).strftime('%Y-%m-%d')"/>
+            <field name="ngan_sach_du_kien">250000000</field>
+            <field name="ngan_sach_thuc_te">75000000</field>
+            <field name="doanh_thu_du_kien">380000000</field>
+            <field name="doanh_thu_thuc_te">100000000</field>
+            <field name="do_uu_tien">3_cao</field>
+            <field name="trang_thai">dang_thuc_hien</field>
+            <field name="tien_do">30.0</field>
+            <field name="muc_do_rui_ro">cao</field>
+            <field name="thanh_vien_ids" eval="[(6, 0, [ref('nhan_su.demo_nhan_vien_2'), ref('nhan_su.demo_nhan_vien_3'), ref('nhan_su.demo_nhan_vien_4')])]"/>
+            <field name="last_update_status">at_risk</field>
+        </record>
+        
+        <!-- 4. Dự án Mobile App - Trễ tiến độ -->
+        <record id="demo_du_an_mobile_app" model="du_an">
+            <field name="ten_du_an">Ứng dụng Mobile HR</field>
+            <field name="mo_ta_ngan">Phát triển ứng dụng quản lý nhân sự trên thiết bị di động (iOS &amp; Android)</field>
+            <field name="mo_ta"><![CDATA[
+                <h3>Mục tiêu</h3>
+                <p>App mobile cho nhân viên check-in, xem lương, đăng ký nghỉ phép</p>
+                <h4>Platform:</h4>
+                <ul>
+                    <li>iOS (Swift/React Native)</li>
+                    <li>Android (Kotlin/React Native)</li>
+                </ul>
+                <h4>Tính năng chính:</h4>
+                <ul>
+                    <li>Check-in GPS</li>
+                    <li>Xem bảng lương</li>
+                    <li>Đăng ký nghỉ phép</li>
+                    <li>Xem công việc được giao</li>
+                    <li>Notification push</li>
+                </ul>
+            ]]></field>
+            <field name="loai_du_an">noi_bo</field>
+            <field name="quan_ly_du_an_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="phong_ban_id" ref="nhan_su.phong_ban_cntt"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=90)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc_du_kien" eval="(datetime.now() + timedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="ngan_sach_du_kien">400000000</field>
+            <field name="ngan_sach_thuc_te">380000000</field>
+            <field name="doanh_thu_du_kien">0</field>
+            <field name="do_uu_tien">3_cao</field>
+            <field name="trang_thai">dang_thuc_hien</field>
+            <field name="tien_do">75.0</field>
+            <field name="muc_do_rui_ro">cao</field>
+            <field name="thanh_vien_ids" eval="[(6, 0, [ref('nhan_su.demo_nhan_vien_3'), ref('nhan_su.demo_nhan_vien_4')])]"/>
+            <field name="last_update_status">off_track</field>
+        </record>
+
+        <!-- 5. Dự án Nghiên cứu - Mới bắt đầu -->
+        <record id="demo_du_an_research_ai" model="du_an">
+            <field name="ten_du_an">Nghiên cứu AI trong Giáo dục</field>
+            <field name="mo_ta_ngan">Nghiên cứu ứng dụng trí tuệ nhân tạo vào giảng dạy và học tập</field>
+            <field name="mo_ta"><![CDATA[
+                <h3>Đề tài nghiên cứu</h3>
+                <p>Ứng dụng AI/ML để cá nhân hóa trải nghiệm học tập cho sinh viên</p>
+                <h4>Phạm vi nghiên cứu:</h4>
+                <ul>
+                    <li>Natural Language Processing</li>
+                    <li>Recommender Systems</li>
+                    <li>Learning Analytics</li>
+                    <li>Adaptive Learning</li>
+                </ul>
+            ]]></field>
+            <field name="loai_du_an">nghien_cuu</field>
+            <field name="quan_ly_du_an_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="phong_ban_id" ref="nhan_su.phong_ban_cntt"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc_du_kien" eval="(datetime.now() + timedelta(days=350)).strftime('%Y-%m-%d')"/>
+            <field name="ngan_sach_du_kien">150000000</field>
+            <field name="ngan_sach_thuc_te">5000000</field>
+            <field name="do_uu_tien">2_trung_binh</field>
+            <field name="trang_thai">len_ke_hoach</field>
+            <field name="tien_do">5.0</field>
+            <field name="muc_do_rui_ro">trung_binh</field>
+            <field name="thanh_vien_ids" eval="[(6, 0, [ref('nhan_su.demo_nhan_vien_1'), ref('nhan_su.demo_nhan_vien_2')])]"/>
+            <field name="last_update_status">on_track</field>
+        </record>
+
+        <!-- 6. Dự án Bảo trì - Tạm dừng -->
+        <record id="demo_du_an_maintenance" model="du_an">
+            <field name="ten_du_an">Nâng cấp Hạ tầng IT</field>
+            <field name="mo_ta_ngan">Nâng cấp máy chủ, mạng LAN và hệ thống bảo mật</field>
+            <field name="loai_du_an">bao_tri</field>
+            <field name="quan_ly_du_an_id" ref="nhan_su.demo_nhan_vien_4"/>
+            <field name="phong_ban_id" ref="nhan_su.phong_ban_cntt"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=40)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc_du_kien" eval="(datetime.now() + timedelta(days=80)).strftime('%Y-%m-%d')"/>
+            <field name="ngan_sach_du_kien">600000000</field>
+            <field name="ngan_sach_thuc_te">200000000</field>
+            <field name="do_uu_tien">2_trung_binh</field>
+            <field name="trang_thai">tam_dung</field>
+            <field name="tien_do">35.0</field>
+            <field name="muc_do_rui_ro">thap</field>
+            <field name="thanh_vien_ids" eval="[(6, 0, [ref('nhan_su.demo_nhan_vien_4')])]"/>
+            <field name="last_update_status">on_hold</field>
+        </record>
+
+        <!-- ============================================ -->
+        <!-- MILESTONES / MỐC THỜI GIAN -->
+        <!-- ============================================ -->
+        
+        <!-- Milestones cho Dự án ERP -->
+        <record id="milestone_erp_1" model="du_an.moc">
+            <field name="name">Hoàn thành Module Nhân sự</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="description"><![CDATA[
+                <p>Hoàn thiện toàn bộ chức năng module quản lý nhân sự</p>
+                <ul>
+                    <li>CRUD Nhân viên, Phòng ban, Chức vụ</li>
+                    <li>Quản lý hợp đồng</li>
+                    <li>Quản lý kỹ năng và chứng chỉ</li>
+                </ul>
+            ]]></field>
+            <field name="deadline" eval="(datetime.now() - timedelta(days=20)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">True</field>
+            <field name="completion_percentage">100.0</field>
+            <field name="milestone_type">development</field>
+            <field name="priority">2</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="deliverables">Source code Module Nhân sự, Documentation, Unit Tests</field>
+        </record>
+
+        <record id="milestone_erp_2" model="du_an.moc">
+            <field name="name">Hoàn thành Module Dự án</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="description">Hoàn thiện module quản lý dự án với đầy đủ tính năng milestone, budget, timeline</field>
+            <field name="deadline" eval="(datetime.now() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">True</field>
+            <field name="completion_percentage">100.0</field>
+            <field name="milestone_type">development</field>
+            <field name="priority">2</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_2"/>
+        </record>
+
+        <record id="milestone_erp_3" model="du_an.moc">
+            <field name="name">Hoàn thành Module Công việc</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="description">Module quản lý công việc với Kanban board, Stage management, Time tracking</field>
+            <field name="deadline" eval="(datetime.now() + timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">False</field>
+            <field name="completion_percentage">70.0</field>
+            <field name="milestone_type">development</field>
+            <field name="priority">3</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_3"/>
+        </record>
+
+        <record id="milestone_erp_4" model="du_an.moc">
+            <field name="name">Tích hợp AI Assistant</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="description">Tích hợp AI vào các module, xây dựng chatbot và phân tích dữ liệu</field>
+            <field name="deadline" eval="(datetime.now() + timedelta(days=40)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">False</field>
+            <field name="completion_percentage">50.0</field>
+            <field name="milestone_type">development</field>
+            <field name="priority">3</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_1"/>
+        </record>
+
+        <record id="milestone_erp_5" model="du_an.moc">
+            <field name="name">Testing &amp; QA</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="description">Kiểm thử toàn bộ hệ thống, fix bugs</field>
+            <field name="deadline" eval="(datetime.now() + timedelta(days=90)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">False</field>
+            <field name="completion_percentage">0.0</field>
+            <field name="milestone_type">testing</field>
+            <field name="priority">2</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_4"/>
+        </record>
+
+        <record id="milestone_erp_6" model="du_an.moc">
+            <field name="name">Deployment &amp; Go-live</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="description">Triển khai lên production server và đào tạo người dùng</field>
+            <field name="deadline" eval="(datetime.now() + timedelta(days=120)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">False</field>
+            <field name="completion_percentage">0.0</field>
+            <field name="milestone_type">deployment</field>
+            <field name="priority">3</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_1"/>
+        </record>
+
+        <!-- Milestones cho Website -->
+        <record id="milestone_web_1" model="du_an.moc">
+            <field name="name">Thiết kế UI/UX</field>
+            <field name="du_an_id" ref="demo_du_an_website"/>
+            <field name="deadline" eval="(datetime.now() - timedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">True</field>
+            <field name="completion_percentage">100.0</field>
+            <field name="milestone_type">design</field>
+            <field name="priority">2</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_2"/>
+        </record>
+
+        <record id="milestone_web_2" model="du_an.moc">
+            <field name="name">Frontend Development</field>
+            <field name="du_an_id" ref="demo_du_an_website"/>
+            <field name="deadline" eval="(datetime.now() + timedelta(days=20)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">False</field>
+            <field name="completion_percentage">40.0</field>
+            <field name="milestone_type">development</field>
+            <field name="priority">3</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_3"/>
+        </record>
+
+        <record id="milestone_web_3" model="du_an.moc">
+            <field name="name">Backend &amp; API</field>
+            <field name="du_an_id" ref="demo_du_an_website"/>
+            <field name="deadline" eval="(datetime.now() + timedelta(days=35)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">False</field>
+            <field name="completion_percentage">30.0</field>
+            <field name="milestone_type">development</field>
+            <field name="priority">3</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_2"/>
+        </record>
+
+        <record id="milestone_web_4" model="du_an.moc">
+            <field name="name">Tích hợp thanh toán</field>
+            <field name="du_an_id" ref="demo_du_an_website"/>
+            <field name="deadline" eval="(datetime.now() + timedelta(days=50)).strftime('%Y-%m-%d')"/>
+            <field name="is_reached">False</field>
+            <field name="completion_percentage">0.0</field>
+            <field name="milestone_type">development</field>
+            <field name="priority">3</field>
+            <field name="responsible_id" ref="nhan_su.demo_nhan_vien_4"/>
+        </record>
+
+        <!-- ============================================ -->
+        <!-- CẬP NHẬT TIẾN ĐỘ -->
+        <!-- ============================================ -->
+        
+        <!-- Cập nhật cho Dự án ERP -->
+        <record id="update_erp_1" model="du_an.cap_nhat">
+            <field name="name">Cập nhật tuần 1 - Tháng 1/2026</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="ngay_cap_nhat" eval="(datetime.now() - timedelta(days=50)).strftime('%Y-%m-%d')"/>
+            <field name="status">on_track</field>
+            <field name="progress">15</field>
+            <field name="cong_viec_da_hoan_thanh">- Thiết lập môi trường phát triển&#10;- Phân tích yêu cầu module Nhân sự&#10;- Thiết kế database schema</field>
+            <field name="cong_viec_dang_thuc_hien">- Coding module Nhân sự&#10;- Thiết kế giao diện</field>
+            <field name="ke_hoach_tuan_toi">- Hoàn thiện CRUD operations&#10;- Implement business logic</field>
+        </record>
+
+        <record id="update_erp_2" model="du_an.cap_nhat">
+            <field name="name">Cập nhật tuần 4 - Tháng 1/2026</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="ngay_cap_nhat" eval="(datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')"/>
+            <field name="status">on_track</field>
+            <field name="progress">35</field>
+            <field name="cong_viec_da_hoan_thanh">- Hoàn thành module Nhân sự&#10;- Unit testing module Nhân sự&#10;- Bắt đầu module Dự án</field>
+            <field name="cong_viec_dang_thuc_hien">- Phát triển module Dự án&#10;- Thiết kế Kanban view</field>
+            <field name="ke_hoach_tuan_toi">- Hoàn thiện module Dự án&#10;- Tích hợp với module Nhân sự</field>
+            <field name="van_de">Một số vấn đề về performance khi load nhiều bản ghi</field>
+            <field name="giai_phap">Tối ưu query, sử dụng pagination</field>
+        </record>
+
+        <record id="update_erp_3" model="du_an.cap_nhat">
+            <field name="name">Cập nhật hiện tại</field>
+            <field name="du_an_id" ref="demo_du_an_erp"/>
+            <field name="ngay_cap_nhat" eval="datetime.now().strftime('%Y-%m-%d')"/>
+            <field name="status">on_track</field>
+            <field name="progress">45</field>
+            <field name="cong_viec_da_hoan_thanh">- Hoàn thành module Dự án&#10;- 70% module Công việc&#10;- Bắt đầu tích hợp AI</field>
+            <field name="cong_viec_dang_thuc_hien">- Hoàn thiện module Công việc&#10;- Tích hợp AI Assistant&#10;- Nâng cấp giao diện</field>
+            <field name="ke_hoach_tuan_toi">- Hoàn thành AI Assistant&#10;- Testing tích hợp&#10;- Chuẩn bị demo</field>
+            <field name="noi_dung"><![CDATA[
+                <h4>Tiến độ tốt</h4>
+                <p>Dự án đang diễn ra đúng kế hoạch. Các module chính đã hoàn thành hoặc gần hoàn thành.</p>
+                <p><strong>Highlight:</strong> AI Assistant đã có thể chat và phân tích dữ liệu cơ bản.</p>
+            ]]></field>
+        </record>
+
+        <!-- Cập nhật cho Website -->
+        <record id="update_web_1" model="du_an.cap_nhat">
+            <field name="name">Cập nhật đầu tiên</field>
+            <field name="du_an_id" ref="demo_du_an_website"/>
+            <field name="ngay_cap_nhat" eval="(datetime.now() - timedelta(days=20)).strftime('%Y-%m-%d')"/>
+            <field name="status">on_track</field>
+            <field name="progress">10</field>
+            <field name="cong_viec_da_hoan_thanh">- Kick-off meeting&#10;- Phân tích yêu cầu&#10;- Wireframe UI</field>
+        </record>
+
+        <record id="update_web_2" model="du_an.cap_nhat">
+            <field name="name">Cập nhật gặp vấn đề</field>
+            <field name="du_an_id" ref="demo_du_an_website"/>
+            <field name="ngay_cap_nhat" eval="(datetime.now() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="status">at_risk</field>
+            <field name="progress">30</field>
+            <field name="cong_viec_da_hoan_thanh">- Hoàn thành design&#10;- Frontend 40%</field>
+            <field name="cong_viec_dang_thuc_hien">- Frontend development&#10;- Backend API</field>
+            <field name="van_de">Khách hàng yêu cầu thay đổi một số tính năng&#10;Thiếu resource backend developer</field>
+            <field name="giai_phap">Họp với khách hàng để thống nhất scope&#10;Tuyển thêm 1 backend dev</field>
+        </record>
+
+        <!-- Cập nhật cho Mobile App -->
+        <record id="update_mobile_1" model="du_an.cap_nhat">
+            <field name="name">Cập nhật trễ tiến độ</field>
+            <field name="du_an_id" ref="demo_du_an_mobile_app"/>
+            <field name="ngay_cap_nhat" eval="datetime.now().strftime('%Y-%m-%d')"/>
+            <field name="status">off_track</field>
+            <field name="progress">75</field>
+            <field name="cong_viec_da_hoan_thanh">- Hoàn thành iOS app 90%&#10;- Hoàn thành Android app 85%&#10;- Backend API hoàn thành</field>
+            <field name="cong_viec_dang_thuc_hien">- Bug fixing&#10;- Testing trên nhiều thiết bị</field>
+            <field name="van_de">Nhiều bugs trên Android version cũ&#10;Performance issues trên iOS</field>
+            <field name="giai_phap">Tăng cường testing&#10;Optimize code&#10;Có thể delay 2 tuần</field>
+        </record>
+
+    </data>
+</odoo>

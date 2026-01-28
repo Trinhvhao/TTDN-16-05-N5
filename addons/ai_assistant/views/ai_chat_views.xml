@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- AI Chat Form View -->
+    <record id="view_ai_chat_form" model="ir.ui.view">
+        <field name="name">ai.chat.form</field>
+        <field name="model">ai.chat</field>
+        <field name="arch" type="xml">
+            <form string="Chat với AI">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Tên cuộc trò chuyện..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="create_date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="message_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="💬 Lịch sử trò chuyện" name="messages">
+                            <field name="message_ids" nolabel="1" mode="kanban,tree">
+                                <kanban class="o_ai_message_kanban" create="0">
+                                    <field name="role"/>
+                                    <field name="content"/>
+                                    <field name="create_date"/>
+                                    <field name="is_error"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="o_ai_bubble o_ai_role_#{record.role.raw_value} #{record.is_error.raw_value ? 'o_ai_error' : ''}">
+                                                <div class="o_ai_msg_header">
+                                                    <strong>
+                                                        <t t-if="record.role.raw_value == 'user'">Bạn</t>
+                                                        <t t-else="">AI Assistant</t>
+                                                    </strong>
+                                                    <small><field name="create_date"/></small>
+                                                </div>
+                                                <div class="o_ai_msg_content">
+                                                    <field name="content"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <tree decoration-info="role=='user'" decoration-success="role=='assistant'" decoration-danger="is_error==True" create="0" delete="1">
+                                    <field name="create_date" string="Thời gian"/>
+                                    <field name="role" string="Vai trò"/>
+                                    <field name="content" string="Nội dung" widget="text"/>
+                                    <field name="is_error" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <group>
+                        <field name="new_message" placeholder="💬 Nhập tin nhắn của bạn..." nolabel="1"/>
+                    </group>
+                    <button name="action_send_message" string="📤 Gửi" type="object" class="btn-primary"/>
+                </footer>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- AI Chat Tree View -->
+    <record id="view_ai_chat_tree" model="ir.ui.view">
+        <field name="name">ai.chat.tree</field>
+        <field name="model">ai.chat</field>
+        <field name="arch" type="xml">
+            <tree string="Lịch sử chat" decoration-muted="message_count==0" decoration-bf="message_count>0">
+                <field name="name" string="Cuộc trò chuyện"/>
+                <field name="user_id" widget="many2one_avatar_user" string="Người dùng"/>
+                <field name="message_count" string="Số tin nhắn"/>
+                <field name="create_date" string="Ngày tạo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AI Chat Search View -->
+    <record id="view_ai_chat_search" model="ir.ui.view">
+        <field name="name">ai.chat.search</field>
+        <field name="model">ai.chat</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm cuộc trò chuyện">
+                <field name="name" string="Tên" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="user_id" string="Người dùng"/>
+                <filter string="Chat của tôi" name="my_chats" domain="[('user_id', '=', uid)]"/>
+                <filter string="Có tin nhắn" name="has_messages" domain="[('message_count', '>', 0)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Người dùng" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Ngày tạo" name="group_date" context="{'group_by': 'create_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ai_chat" model="ir.actions.act_window">
+        <field name="name">💬 Lịch sử Chat AI</field>
+        <field name="res_model">ai.chat</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_ai_chat_search"/>
+        <field name="context">{'search_default_my_chats': 1, 'search_default_has_messages': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                💬 Chưa có cuộc trò chuyện nào
+            </p>
+            <p>
+                Bắt đầu trò chuyện với AI Assistant để nhận hỗ trợ về dự án, nhân sự và công việc.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action to create new chat -->
+    <record id="action_ai_new_chat" model="ir.actions.act_window">
+        <field name="name">Tạo Chat mới</field>
+        <field name="res_model">ai.chat</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Extend Nhân viên Form - Add AI Tab -->
+    <record id="view_nhan_vien_form_ai" model="ir.ui.view">
+        <field name="name">nhan.vien.form.ai</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            <!-- Add AI buttons -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_ai_danh_gia" type="object" class="oe_stat_button" icon="fa-star" string="AI Đánh giá"/>
+                <button name="action_ai_goi_y_dao_tao" type="object" class="oe_stat_button" icon="fa-graduation-cap" string="AI Đào tạo"/>
+            </xpath>
+            
+            <!-- Add AI Tab -->
+            <xpath expr="//page[@name='ghi_chu']" position="after">
+                <page string="AI Assistant" name="ai_assistant">
+                    <group>
+                        <field name="ai_updated"/>
+                    </group>
+                    <group string="Đánh giá từ AI">
+                        <field name="ai_danh_gia" nolabel="1"/>
+                    </group>
+                    <group string="Gợi ý đào tạo từ AI">
+                        <field name="ai_goi_y_dao_tao" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Dự án Form - Add AI Tab -->
+    <record id="view_du_an_form_ai" model="ir.ui.view">
+        <field name="name">du.an.form.ai</field>
+        <field name="model">du_an</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_du_an_form"/>
+        <field name="arch" type="xml">
+            <!-- Add AI buttons -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_ai_phan_tich_rui_ro" type="object" class="oe_stat_button" icon="fa-warning" string="AI Rủi ro"/>
+                <button name="action_ai_goi_y_timeline" type="object" class="oe_stat_button" icon="fa-calendar" string="AI Timeline"/>
+                <button name="action_ai_tom_tat" type="object" class="oe_stat_button" icon="fa-file-text" string="AI Tóm tắt"/>
+            </xpath>
+            
+            <!-- Add AI Tab -->
+            <xpath expr="//page[@name='ghi_chu']" position="after">
+                <page string="AI Assistant" name="ai_assistant">
+                    <group>
+                        <field name="ai_updated"/>
+                    </group>
+                    <group string="Phân tích rủi ro AI">
+                        <field name="ai_phan_tich_rui_ro" nolabel="1"/>
+                    </group>
+                    <group string="Gợi ý Timeline AI">
+                        <field name="ai_goi_y_timeline" nolabel="1"/>
+                    </group>
+                    <group string="Tóm tắt dự án AI">
+                        <field name="ai_tom_tat" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Công việc Form - Add AI Tab -->
+    <record id="view_cong_viec_form_ai" model="ir.ui.view">
+        <field name="name">cong.viec.form.ai</field>
+        <field name="model">cong_viec</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_cong_viec_form"/>
+        <field name="arch" type="xml">
+            <!-- Add AI buttons -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_ai_uoc_tinh_thoi_gian" type="object" class="oe_stat_button" icon="fa-clock-o" string="AI Thời gian"/>
+                <button name="action_ai_goi_y_thuc_hien" type="object" class="oe_stat_button" icon="fa-lightbulb-o" string="AI Gợi ý"/>
+                <button name="action_ai_tao_checklist" type="object" class="oe_stat_button" icon="fa-list-ul" string="AI Checklist"/>
+            </xpath>
+            
+            <!-- Add AI Tab -->
+            <xpath expr="//page[@name='khac']" position="after">
+                <page string="AI Assistant" name="ai_assistant">
+                    <group>
+                        <field name="ai_updated"/>
+                    </group>
+                    <group string="Ước tính thời gian AI">
+                        <field name="ai_uoc_tinh_thoi_gian" nolabel="1"/>
+                    </group>
+                    <group string="Gợi ý thực hiện AI">
+                        <field name="ai_goi_y_thuc_hien" nolabel="1"/>
+                    </group>
+                    <group string="Mô tả tự động (AI tạo)">
+                        <field name="ai_mo_ta_tu_dong" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_root"
+            name="PE"
+            sequence="0"/>
+          
+        <menuitem name="Quản lý nhân sự" 
+            id="menu_employeess" 
+            parent="menu_root" 
+            sequence="1"
+            action="action_employeess"
+        />
+    </data>
+</odoo>

@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_loai_van_ban,loai_van_ban.user,model_loai_van_ban,base.group_user,1,1,1,1
-access_van_ban,van_ban.user,model_van_ban,base.group_user,1,1,1,1

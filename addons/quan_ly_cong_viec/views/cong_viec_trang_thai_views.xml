@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_cong_viec_trang_thai_tree" model="ir.ui.view">
+            <field name="name">cong_viec.trang_thai.tree</field>
+            <field name="model">cong_viec.trang_thai</field>
+            <field name="arch" type="xml">
+                <tree string="Trạng thái công việc" editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="stage_type"/>
+                    <field name="fold"/>
+                    <field name="color" widget="color_picker"/>
+                    <field name="du_an_ids" widget="many2many_tags"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_cong_viec_trang_thai_form" model="ir.ui.view">
+            <field name="name">cong_viec.trang_thai.form</field>
+            <field name="model">cong_viec.trang_thai</field>
+            <field name="arch" type="xml">
+                <form string="Trạng thái công việc">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" 
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" 
+                                       options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="sequence"/>
+                                <field name="stage_type"/>
+                            </group>
+                            <group>
+                                <field name="fold"/>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                        </group>
+                        <group string="Dự án sử dụng trạng thái này">
+                            <field name="du_an_ids" widget="many2many_tags" 
+                                   placeholder="Để trống nếu muốn dùng cho tất cả dự án"/>
+                        </group>
+                        <group string="Mô tả">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_cong_viec_trang_thai" model="ir.actions.act_window">
+            <field name="name">Trạng thái công việc</field>
+            <field name="res_model">cong_viec.trang_thai</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo trạng thái công việc mới
+                </p>
+                <p>
+                    Trạng thái công việc giúp bạn tổ chức workflow cho các công việc.
+                    Bạn có thể tạo các trạng thái khác nhau cho từng dự án hoặc sử dụng chung.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

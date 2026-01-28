@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View - Mốc thời gian -->
+    <record id="view_du_an_moc_form" model="ir.ui.view">
+        <field name="name">du_an.moc.form</field>
+        <field name="model">du_an.moc</field>
+        <field name="arch" type="xml">
+            <form string="Mốc thời gian dự án">
+                <header>
+                    <button name="action_mark_reached" string="Đánh dấu hoàn thành" 
+                            type="object" class="oe_highlight" 
+                            attrs="{'invisible': [('is_reached', '=', True)]}"/>
+                    <button name="action_mark_not_reached" string="Đánh dấu chưa hoàn thành" 
+                            type="object" 
+                            attrs="{'invisible': [('is_reached', '=', False)]}"/>
+                    <field name="is_reached" widget="statusbar" statusbar_visible="False,True"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="toggle_is_reached" type="object" icon="fa-check-circle">
+                            <field name="is_reached" widget="boolean_toggle"/>
+                            <span>Đã đạt</span>
+                        </button>
+                    </div>
+                    <field name="is_deadline_exceeded" invisible="1"/>
+                    
+                    <widget name="web_ribbon" title="Quá hạn" bg_color="bg-danger" 
+                            attrs="{'invisible': [('is_deadline_exceeded', '=', False)]}"/>
+                    <widget name="web_ribbon" title="Hoàn thành" bg_color="bg-success" 
+                            attrs="{'invisible': [('is_reached', '=', False)]}"/>
+                    
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Tên mốc thời gian..."/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="du_an_id" options="{'no_create': True}"/>
+                            <field name="milestone_type"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group>
+                            <field name="deadline"/>
+                            <field name="reached_date" attrs="{'invisible': [('is_reached', '=', False)]}"/>
+                            <field name="days_remaining" 
+                                   attrs="{'invisible': [('is_reached', '=', True)]}"
+                                   widget="integer"/>
+                            <field name="completion_percentage" widget="progressbar"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Mô tả">
+                            <field name="description" placeholder="Mô tả chi tiết về mốc thời gian này..."/>
+                        </page>
+                        <page string="Deliverables &amp; KPI">
+                            <group>
+                                <field name="deliverables" placeholder="Liệt kê các sản phẩm cần bàn giao..."/>
+                                <field name="success_criteria" placeholder="Các tiêu chí để đánh giá mốc này đã hoàn thành..."/>
+                            </group>
+                        </page>
+                        <page string="Ghi chú">
+                            <field name="notes" placeholder="Ghi chú thêm..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View - Mốc thời gian -->
+    <record id="view_du_an_moc_tree" model="ir.ui.view">
+        <field name="name">du_an.moc.tree</field>
+        <field name="model">du_an.moc</field>
+        <field name="arch" type="xml">
+            <tree string="Mốc thời gian" 
+                  decoration-success="is_reached == True"
+                  decoration-danger="is_deadline_exceeded == True"
+                  decoration-muted="is_reached == True">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="du_an_id"/>
+                <field name="milestone_type"/>
+                <field name="deadline"/>
+                <field name="days_remaining" optional="show"/>
+                <field name="completion_percentage" widget="progressbar"/>
+                <field name="responsible_id" optional="hide"/>
+                <field name="priority" widget="priority" optional="show"/>
+                <field name="is_reached" invisible="1"/>
+                <field name="is_deadline_exceeded" invisible="1"/>
+                <field name="color" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Calendar View - Mốc thời gian -->
+    <record id="view_du_an_moc_calendar" model="ir.ui.view">
+        <field name="name">du_an.moc.calendar</field>
+        <field name="model">du_an.moc</field>
+        <field name="arch" type="xml">
+            <calendar string="Lịch Milestones" 
+                      date_start="deadline" 
+                      color="du_an_id"
+                      quick_add="False"
+                      event_open_popup="True"
+                      mode="month">
+                <field name="name"/>
+                <field name="du_an_id"/>
+                <field name="is_reached"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Kanban View - Mốc thời gian -->
+    <record id="view_du_an_moc_kanban" model="ir.ui.view">
+        <field name="name">du_an.moc.kanban</field>
+        <field name="model">du_an.moc</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="deadline"/>
+                <field name="is_reached"/>
+                <field name="is_deadline_exceeded"/>
+                <field name="days_remaining"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                    <div class="o_secondary">
+                                        <field name="du_an_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_content">
+                                <div class="o_kanban_card_manage_section">
+                                    <div>
+                                        <i class="fa fa-calendar"/> <field name="deadline"/>
+                                    </div>
+                                    <div t-if="!record.is_reached.raw_value and record.days_remaining.raw_value > 0">
+                                        <i class="fa fa-clock-o"/> Còn <field name="days_remaining"/> ngày
+                                    </div>
+                                    <div t-if="record.is_deadline_exceeded.raw_value" class="text-danger">
+                                        <i class="fa fa-warning"/> Quá hạn
+                                    </div>
+                                    <div t-if="record.is_reached.raw_value" class="text-success">
+                                        <i class="fa fa-check-circle"/> Đã hoàn thành
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View - Mốc thời gian -->
+    <record id="view_du_an_moc_search" model="ir.ui.view">
+        <field name="name">du_an.moc.search</field>
+        <field name="model">du_an.moc</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm Mốc thời gian">
+                <field name="name"/>
+                <field name="du_an_id"/>
+                <field name="responsible_id"/>
+                
+                <filter string="Chưa hoàn thành" name="not_reached" 
+                        domain="[('is_reached', '=', False)]"/>
+                <filter string="Đã hoàn thành" name="reached" 
+                        domain="[('is_reached', '=', True)]"/>
+                <filter string="Quá hạn" name="exceeded" 
+                        domain="[('is_deadline_exceeded', '=', True)]"/>
+                <filter string="Sắp đến hạn" name="upcoming" 
+                        domain="[('deadline', '&lt;=', (context_today() + relativedelta(days=7)).strftime('%Y-%m-%d')), ('deadline', '&gt;=', context_today().strftime('%Y-%m-%d')), ('is_reached', '=', False)]"/>
+                <filter string="Ưu tiên cao" name="high_priority" 
+                        domain="[('priority', 'in', ['2', '3'])]"/>
+                
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Dự án" name="group_by_du_an" context="{'group_by': 'du_an_id'}"/>
+                    <filter string="Trạng thái" name="group_by_is_reached" context="{'group_by': 'is_reached'}"/>
+                    <filter string="Loại mốc" name="group_by_type" context="{'group_by': 'milestone_type'}"/>
+                    <filter string="Người phụ trách" name="group_by_responsible" context="{'group_by': 'responsible_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action - Mốc thời gian -->
+    <record id="action_du_an_moc" model="ir.actions.act_window">
+        <field name="name">Mốc thời gian</field>
+        <field name="res_model">du_an.moc</field>
+        <field name="view_mode">tree,form,calendar,kanban</field>
+        <field name="context">{'search_default_not_reached': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo mốc thời gian mới
+            </p>
+            <p>
+                Mốc thời gian giúp bạn theo dõi các checkpoint quan trọng của dự án.
+            </p>
+        </field>
+    </record>
+</odoo>

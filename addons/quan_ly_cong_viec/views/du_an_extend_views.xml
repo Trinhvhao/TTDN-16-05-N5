@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend Du An form view to add công việc tab and stat button -->
+    <record id="view_du_an_form_extend" model="ir.ui.view">
+        <field name="name">du.an.form.extend.cong.viec</field>
+        <field name="model">du_an</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_du_an_form"/>
+        <field name="arch" type="xml">
+            <!-- Add stat button -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="action_view_cong_viec" icon="fa-tasks">
+                    <field string="Công việc" name="so_cong_viec" widget="statinfo"/>
+                </button>
+            </xpath>
+            
+            <!-- Add thống kê công việc sau field tien_do -->
+            <xpath expr="//field[@name='tien_do']" position="after">
+                <field name="so_cong_viec"/>
+                <field name="so_cong_viec_hoan_thanh"/>
+                <field name="so_cong_viec_dang_lam"/>
+            </xpath>
+            
+            <!-- Add công việc tab after thành viên -->
+            <xpath expr="//page[@name='thanh_vien']" position="after">
+                <page string="Công việc" name="cong_viec">
+                    <field name="cong_viec_ids">
+                        <tree editable="bottom" decoration-success="stage_type=='done'" decoration-warning="stage_type=='in_progress'" decoration-muted="stage_type=='cancelled'" decoration-danger="tre_han==True">
+                            <field name="ten_cong_viec"/>
+                            <field name="nguoi_phu_trach_id"/>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                            <field name="trang_thai_id"/>
+                            <field name="do_uu_tien" widget="priority"/>
+                            <field name="tien_do" widget="progressbar"/>
+                            <field name="du_an_id" invisible="1"/>
+                            <field name="tre_han" invisible="1"/>
+                            <field name="stage_type" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Du An tree view to add so_cong_viec -->
+    <record id="view_du_an_tree_extend" model="ir.ui.view">
+        <field name="name">du.an.tree.extend.cong.viec</field>
+        <field name="model">du_an</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_du_an_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tien_do']" position="after">
+                <field name="so_cong_viec"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Du An kanban view to add so_cong_viec -->
+    <record id="view_du_an_kanban_extend" model="ir.ui.view">
+        <field name="name">du.an.kanban.extend.cong.viec</field>
+        <field name="model">du_an</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_du_an_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_right')]" position="inside">
+                <field name="so_cong_viec"/> công việc
+            </xpath>
+        </field>
+    </record>
+</odoo>

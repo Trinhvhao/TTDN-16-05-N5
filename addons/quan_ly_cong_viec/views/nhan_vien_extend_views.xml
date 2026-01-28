@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend Nhân viên form view to add công việc tab -->
+    <record id="view_nhan_vien_form_extend" model="ir.ui.view">
+        <field name="name">nhan.vien.form.extend.cong.viec</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='lich_su']" position="after">
+                <page string="Công việc được giao" name="cong_viec">
+                    <field name="cong_viec_ids">
+                        <tree decoration-success="stage_type=='done'" decoration-warning="stage_type=='in_progress'" decoration-danger="tre_han==True">
+                            <field name="ten_cong_viec"/>
+                            <field name="du_an_id"/>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                            <field name="trang_thai_id"/>
+                            <field name="tien_do" widget="progressbar"/>
+                            <field name="tre_han" invisible="1"/>
+                            <field name="stage_type" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

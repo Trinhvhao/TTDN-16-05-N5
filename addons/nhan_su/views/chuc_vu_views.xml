@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_chuc_vu_form" model="ir.ui.view">
+        <field name="name">chuc.vu.form</field>
+        <field name="model">chuc_vu</field>
+        <field name="arch" type="xml">
+            <form string="Chức vụ">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ten_chuc_vu" placeholder="Tên chức vụ"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin cơ bản">
+                            <field name="ma_chuc_vu"/>
+                            <field name="cap_bac"/>
+                            <field name="so_nhan_vien"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Mô tả">
+                            <field name="mo_ta" nolabel="1" placeholder="Mô tả chức vụ..."/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Danh sách nhân viên" name="nhan_vien">
+                            <field name="nhan_vien_ids">
+                                <tree>
+                                    <field name="ma_nhan_vien"/>
+                                    <field name="ho_ten"/>
+                                    <field name="phong_ban_id"/>
+                                    <field name="dien_thoai"/>
+                                    <field name="email"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_chuc_vu_tree" model="ir.ui.view">
+        <field name="name">chuc.vu.tree</field>
+        <field name="model">chuc_vu</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách chức vụ">
+                <field name="ma_chuc_vu"/>
+                <field name="ten_chuc_vu"/>
+                <field name="cap_bac"/>
+                <field name="so_nhan_vien"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_chuc_vu_search" model="ir.ui.view">
+        <field name="name">chuc.vu.search</field>
+        <field name="model">chuc_vu</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm chức vụ">
+                <field name="ma_chuc_vu"/>
+                <field name="ten_chuc_vu"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter name="group_cap_bac" string="Cấp bậc" context="{'group_by': 'cap_bac'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_chuc_vu" model="ir.actions.act_window">
+        <field name="name">Chức vụ</field>
+        <field name="res_model">chuc_vu</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_chuc_vu_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm chức vụ mới
+            </p>
+        </field>
+    </record>
+</odoo>

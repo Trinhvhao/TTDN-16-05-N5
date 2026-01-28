@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_nhan_su_root"
+        name="Quản Lý Nhân Sự"
+        sequence="10"
+        web_icon="nhan_su,static/description/icon.png"/>
+
+    <!-- Submenu: Nhân viên -->
+    <menuitem id="menu_nhan_vien"
+        name="Nhân viên"
+        parent="menu_nhan_su_root"
+        action="action_nhan_vien"
+        sequence="10"/>
+
+    <!-- Submenu: Hợp đồng -->
+    <menuitem id="menu_hop_dong"
+        name="Hợp đồng lao động"
+        parent="menu_nhan_su_root"
+        action="action_hop_dong"
+        sequence="20"/>
+
+    <!-- Submenu: Cấu hình -->
+    <menuitem id="menu_nhan_su_cau_hinh"
+        name="Cấu hình"
+        parent="menu_nhan_su_root"
+        sequence="100"/>
+
+    <!-- Submenu: Phòng ban -->
+    <menuitem id="menu_phong_ban"
+        name="Phòng ban"
+        parent="menu_nhan_su_cau_hinh"
+        action="action_phong_ban"
+        sequence="10"/>
+
+    <!-- Submenu: Chức vụ -->
+    <menuitem id="menu_chuc_vu"
+        name="Chức vụ"
+        parent="menu_nhan_su_cau_hinh"
+        action="action_chuc_vu"
+        sequence="20"/>
+
+    <!-- Submenu: Kỹ năng -->
+    <menuitem id="menu_ky_nang"
+        name="Kỹ năng"
+        parent="menu_nhan_su_cau_hinh"
+        action="action_ky_nang"
+        sequence="30"/>
+</odoo>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_budgets_form" model="ir.ui.view">
+            <field name="name">budgets.form</field>
+            <field name="model">budgets</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="2">
+                            <group>
+                                <field name="projects_id"/>
+                                <field name="budgets_id"/>
+                                <field name="budgets_name"/>
+                            </group>
+                            <group>
+                                <field name="budget_planned"/>
+                                <field name="budget_allocated"/>
+                                <field name="budget_reserved"/>
+                                <field name="budget_spent"/>
+                                <field name="budget_difference"/>
+                            </group>
+
+                        </group>
+
+                        <notebook>
+                            <page string="Chi phí liên quan">
+                                <field name="expense_ids">
+                                    <tree editable="bottom">
+                                        <field name="expenses_name"/>
+                                        <field name="amount"/>
+                                        <field name="date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_budgets_tree" model="ir.ui.view">
+            <field name="name">budgets.tree</field>
+            <field name="model">budgets</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="projects_id"/>
+                    <field name="budgets_id"/>
+                    <field name="budgets_name"/>
+                    <field name="budget_planned"/>
+                    <field name="budget_allocated"/>
+                    <field name="budget_spent"/>
+                    <field name="budget_difference"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_budgets_search" model="ir.ui.view">
+            <field name="name">budgets.search</field>
+            <field name="model">budgets</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="projects_id"/>
+                    <field name="budgets_id"/>
+                    <field name="budgets_name"/>
+                    <field name="budget_planned"/>
+                    <field name="budget_spent"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_budgets" model="ir.actions.act_window">
+        <field name="name">Ngân sách dự án</field>
+            <field name="res_model">budgets</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_budgets_search"/>
+        </record>
+    </data>
+</odoo>

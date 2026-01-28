@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Quick Ask Wizard Form -->
+    <record id="view_ai_quick_ask_wizard_form" model="ir.ui.view">
+        <field name="name">ai.quick.ask.wizard.form</field>
+        <field name="model">ai.quick.ask.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Hỏi nhanh AI" class="o_ai_quick_ask_form">
+                <div class="alert alert-info" role="alert" style="margin: 0 0 15px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                    <h3 style="margin: 0; color: white;"><i class="fa fa-robot"/> AI Assistant - Hỏi đáp thông minh</h3>
+                    <p style="margin: 5px 0 0 0; opacity: 0.9;">Đặt câu hỏi và nhận câu trả lời chi tiết từ AI</p>
+                </div>
+                
+                <group attrs="{'invisible': [('context_info', '=', False)]}" style="margin-bottom: 10px;">
+                    <div class="alert alert-secondary" role="alert" style="margin: 0; padding: 10px;">
+                        <i class="fa fa-info-circle"/> <strong>Ngữ cảnh:</strong>
+                        <field name="context_info" readonly="1" nolabel="1" style="margin-top: 5px;"/>
+                    </div>
+                </group>
+                
+                <group>
+                    <field name="template_question" widget="radio" options="{'horizontal': true}"/>
+                </group>
+                
+                <group>
+                    <field name="question" 
+                           placeholder="💭 Nhập câu hỏi của bạn tại đây..." 
+                           nolabel="1"
+                           attrs="{'readonly': [('template_question', '!=', 'custom')]}"
+                           style="min-height: 100px; font-size: 14px;"/>
+                </group>
+                
+                <group attrs="{'invisible': [('answer', '=', False)]}" style="margin-top: 15px;">
+                    <div class="alert alert-success" role="alert" style="margin: 0; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);">
+                        <h4 style="margin: 0 0 10px 0; color: white;"><i class="fa fa-check-circle"/> Câu trả lời từ AI</h4>
+                        <div style="background: rgba(255,255,255,0.95); color: #2c3e50; padding: 15px; border-radius: 8px; line-height: 1.6;">
+                            <field name="answer" readonly="1" widget="text" nolabel="1"/>
+                        </div>
+                    </div>
+                </group>
+                
+                <field name="context_model" invisible="1"/>
+                <field name="context_id" invisible="1"/>
+                
+                <footer>
+                    <button name="action_ask" 
+                            string="🤖 Hỏi AI" 
+                            type="object" 
+                            class="btn-primary"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 8px 20px; font-weight: bold;"/>
+                    <button string="Đóng" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Analysis Wizard Form -->
+    <record id="view_ai_analysis_wizard_form" model="ir.ui.view">
+        <field name="name">ai.analysis.wizard.form</field>
+        <field name="model">ai.analysis.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Phân tích AI" class="o_ai_analysis_form">
+                <div class="alert alert-info" role="alert" style="margin: 0 0 15px 0; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none;">
+                    <h3 style="margin: 0; color: white;"><i class="fa fa-pie-chart"/> Phân tích dữ liệu thông minh</h3>
+                    <p style="margin: 5px 0 0 0; opacity: 0.9;">Sử dụng AI để phân tích toàn diện dữ liệu của bạn</p>
+                </div>
+                
+                <group>
+                    <group>
+                        <field name="analysis_type" widget="radio"/>
+                    </group>
+                    <group>
+                        <label for="date_from" string="Khoảng thời gian"/>
+                        <div class="o_row">
+                            <field name="date_from" placeholder="Từ ngày"/>
+                            <span class="mx-2">đến</span>
+                            <field name="date_to" placeholder="Đến ngày"/>
+                        </div>
+                    </group>
+                </group>
+                
+                <group attrs="{'invisible': [('result', '=', False)]}" style="margin-top: 20px;">
+                    <div class="alert" role="alert" style="margin: 0; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border: none; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h4 style="margin: 0 0 15px 0; color: #2c3e50;"><i class="fa fa-lightbulb-o text-warning"/> Kết quả phân tích AI</h4>
+                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <field name="result" nolabel="1" widget="html"/>
+                        </div>
+                    </div>
+                </group>
+                
+                <footer style="margin-top: 15px;">
+                    <button name="action_analyze" 
+                            string="🔍 Phân tích ngay" 
+                            type="object" 
+                            class="btn-primary"
+                            style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; padding: 8px 20px; font-weight: bold;"/>
+                    <button name="action_save_to_chat" 
+                            string="💾 Lưu vào Chat" 
+                            type="object" 
+                            class="btn-success" 
+                            attrs="{'invisible': [('result', '=', False)]}"/>
+                    <button string="Đóng" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Quick Ask -->
+    <record id="action_ai_quick_ask_wizard" model="ir.actions.act_window">
+        <field name="name">Hỏi nhanh AI</field>
+        <field name="res_model">ai.quick.ask.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Action for Analysis -->
+    <record id="action_ai_analysis_wizard" model="ir.actions.act_window">
+        <field name="name">Phân tích AI</field>
+        <field name="res_model">ai.analysis.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

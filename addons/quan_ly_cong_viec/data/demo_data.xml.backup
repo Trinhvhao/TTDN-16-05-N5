@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Demo Tasks for ERP Project -->
+        <record id="demo_cong_viec_1" model="cong_viec">
+            <field name="ten_cong_viec">Phân tích yêu cầu hệ thống ERP</field>
+            <field name="mo_ta">&lt;p&gt;Thu thập và phân tích yêu cầu từ các phòng ban&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Phỏng vấn các phòng ban&lt;/li&gt;
+&lt;li&gt;Thu thập tài liệu hiện tại&lt;/li&gt;
+&lt;li&gt;Lập báo cáo phân tích&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="loai_cong_viec">research</field>
+            <field name="giai_doan">phan_tich</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_erp"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=25)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() - timedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_hoan_thanh_thuc_te" eval="(datetime.now() - timedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">3</field>
+            <field name="do_kho">trung_binh</field>
+            <field name="trang_thai_id" ref="stage_hoan_thanh"/>
+            <field name="tien_do">100</field>
+            <field name="thoi_gian_uoc_tinh">40</field>
+            <field name="thoi_gian_thuc_te">38</field>
+            <field name="kanban_state">done</field>
+        </record>
+
+        <record id="demo_cong_viec_2" model="cong_viec">
+            <field name="ten_cong_viec">Thiết kế database</field>
+            <field name="mo_ta">&lt;p&gt;Thiết kế cấu trúc cơ sở dữ liệu cho hệ thống&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Thiết kế ERD&lt;/li&gt;
+&lt;li&gt;Tạo script migration&lt;/li&gt;
+&lt;li&gt;Review và tối ưu&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="loai_cong_viec">task</field>
+            <field name="giai_doan">thiet_ke</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_erp"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=14)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_hoan_thanh_thuc_te" eval="(datetime.now() - timedelta(days=6)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">3</field>
+            <field name="do_kho">kho</field>
+            <field name="trang_thai_id" ref="stage_hoan_thanh"/>
+            <field name="tien_do">100</field>
+            <field name="thoi_gian_uoc_tinh">32</field>
+            <field name="thoi_gian_thuc_te">35</field>
+            <field name="kanban_state">done</field>
+        </record>
+
+        <record id="demo_cong_viec_3" model="cong_viec">
+            <field name="ten_cong_viec">Phát triển module quản lý nhân sự</field>
+            <field name="mo_ta">&lt;p&gt;Xây dựng các chức năng quản lý thông tin nhân viên&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tạo model nhân viên&lt;/li&gt;
+&lt;li&gt;Xây dựng views&lt;/li&gt;
+&lt;li&gt;Thêm security&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="loai_cong_viec">feature</field>
+            <field name="giai_doan">phat_trien</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_erp"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="nguoi_kiem_tra_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() + timedelta(days=20)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">3</field>
+            <field name="do_kho">kho</field>
+            <field name="trang_thai_id" ref="stage_dang_lam"/>
+            <field name="tien_do">60</field>
+            <field name="thoi_gian_uoc_tinh">80</field>
+            <field name="thoi_gian_thuc_te">45</field>
+            <field name="kanban_state">normal</field>
+        </record>
+
+        <record id="demo_cong_viec_4" model="cong_viec">
+            <field name="ten_cong_viec">Phát triển module quản lý dự án</field>
+            <field name="mo_ta">&lt;p&gt;Xây dựng các chức năng quản lý dự án và công việc&lt;/p&gt;</field>
+            <field name="loai_cong_viec">feature</field>
+            <field name="giai_doan">phat_trien</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_erp"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=8)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() + timedelta(days=25)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">4</field>
+            <field name="do_kho">rat_kho</field>
+            <field name="trang_thai_id" ref="stage_dang_lam"/>
+            <field name="tien_do">45</field>
+            <field name="thoi_gian_uoc_tinh">100</field>
+            <field name="thoi_gian_thuc_te">42</field>
+            <field name="kanban_state">normal</field>
+        </record>
+
+        <record id="demo_cong_viec_5" model="cong_viec">
+            <field name="ten_cong_viec">Testing hệ thống</field>
+            <field name="mo_ta">&lt;p&gt;Kiểm thử toàn bộ hệ thống và sửa lỗi&lt;/p&gt;</field>
+            <field name="loai_cong_viec">task</field>
+            <field name="giai_doan">kiem_thu</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_erp"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_4"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() + timedelta(days=30)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() + timedelta(days=50)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">2</field>
+            <field name="do_kho">trung_binh</field>
+            <field name="trang_thai_id" ref="stage_backlog"/>
+            <field name="tien_do">0</field>
+            <field name="thoi_gian_uoc_tinh">60</field>
+            <field name="thoi_gian_thuc_te">0</field>
+            <field name="kanban_state">normal</field>
+        </record>
+
+        <!-- Demo Tasks for Website Project -->
+        <record id="demo_cong_viec_6" model="cong_viec">
+            <field name="ten_cong_viec">Thiết kế giao diện website</field>
+            <field name="mo_ta">&lt;p&gt;Thiết kế UI/UX cho website thương mại điện tử&lt;/p&gt;</field>
+            <field name="loai_cong_viec">task</field>
+            <field name="giai_doan">thiet_ke</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_website"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=12)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() - timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_hoan_thanh_thuc_te" eval="(datetime.now() - timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">3</field>
+            <field name="do_kho">trung_binh</field>
+            <field name="trang_thai_id" ref="stage_hoan_thanh"/>
+            <field name="tien_do">100</field>
+            <field name="thoi_gian_uoc_tinh">40</field>
+            <field name="thoi_gian_thuc_te">42</field>
+            <field name="kanban_state">done</field>
+        </record>
+
+        <record id="demo_cong_viec_7" model="cong_viec">
+            <field name="ten_cong_viec">Phát triển chức năng giỏ hàng</field>
+            <field name="mo_ta">&lt;p&gt;Xây dựng tính năng thêm sản phẩm vào giỏ và thanh toán&lt;/p&gt;</field>
+            <field name="loai_cong_viec">feature</field>
+            <field name="giai_doan">phat_trien</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_website"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() + timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">3</field>
+            <field name="do_kho">kho</field>
+            <field name="trang_thai_id" ref="stage_dang_lam"/>
+            <field name="tien_do">70</field>
+            <field name="thoi_gian_uoc_tinh">50</field>
+            <field name="thoi_gian_thuc_te">32</field>
+            <field name="kanban_state">done</field>
+        </record>
+
+        <record id="demo_cong_viec_8" model="cong_viec">
+            <field name="ten_cong_viec">Tích hợp cổng thanh toán</field>
+            <field name="mo_ta">&lt;p&gt;Tích hợp VNPay, MoMo cho website&lt;/p&gt;</field>
+            <field name="loai_cong_viec">feature</field>
+            <field name="giai_doan">phat_trien</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_website"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_4"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() + timedelta(days=20)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">2</field>
+            <field name="do_kho">kho</field>
+            <field name="trang_thai_id" ref="stage_chua_lam"/>
+            <field name="tien_do">0</field>
+            <field name="thoi_gian_uoc_tinh">35</field>
+            <field name="thoi_gian_thuc_te">0</field>
+            <field name="kanban_state">normal</field>
+        </record>
+
+        <!-- Demo Tasks for Mobile App Project -->
+        <record id="demo_cong_viec_9" model="cong_viec">
+            <field name="ten_cong_viec">Phát triển màn hình đăng nhập</field>
+            <field name="mo_ta">&lt;p&gt;Xây dựng giao diện và logic đăng nhập&lt;/p&gt;</field>
+            <field name="loai_cong_viec">feature</field>
+            <field name="giai_doan">phat_trien</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_mobile_app"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=50)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() - timedelta(days=40)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_hoan_thanh_thuc_te" eval="(datetime.now() - timedelta(days=41)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">3</field>
+            <field name="do_kho">trung_binh</field>
+            <field name="trang_thai_id" ref="stage_hoan_thanh"/>
+            <field name="tien_do">100</field>
+            <field name="thoi_gian_uoc_tinh">24</field>
+            <field name="thoi_gian_thuc_te">22</field>
+            <field name="kanban_state">done</field>
+        </record>
+
+        <record id="demo_cong_viec_10" model="cong_viec">
+            <field name="ten_cong_viec">Tích hợp API backend</field>
+            <field name="mo_ta">&lt;p&gt;Kết nối mobile app với hệ thống backend&lt;/p&gt;</field>
+            <field name="loai_cong_viec">feature</field>
+            <field name="giai_doan">phat_trien</field>
+            <field name="du_an_id" ref="quan_ly_du_an.demo_du_an_mobile_app"/>
+            <field name="nguoi_phu_trach_id" ref="nhan_su.demo_nhan_vien_4"/>
+            <field name="nguoi_tao_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="nguoi_kiem_tra_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="ngay_bat_dau" eval="(datetime.now() - timedelta(days=20)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="do_uu_tien">4</field>
+            <field name="do_kho">rat_kho</field>
+            <field name="trang_thai_id" ref="stage_review"/>
+            <field name="tien_do">80</field>
+            <field name="thoi_gian_uoc_tinh">48</field>
+            <field name="thoi_gian_thuc_te">40</field>
+            <field name="kanban_state">done</field>
+        </record>
+    </data>
+</odoo>

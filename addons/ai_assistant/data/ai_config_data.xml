@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Tạo cấu hình AI mặc định -->
+        <record id="ai_config_default" model="ai.config">
+            <field name="name">OpenRouter AI Default Config</field>
+            <field name="api_key">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</field>
+            <field name="api_url">https://openrouter.ai/api/v1/chat/completions</field>
+            <field name="model">arcee-ai/trinity-mini:free</field>
+            <field name="max_tokens">2048</field>
+            <field name="temperature">0.7</field>
+            <field name="active">True</field>
+            <field name="system_prompt">Bạn là AI Assistant chuyên nghiệp hỗ trợ quản lý doanh nghiệp FitDNU. 
+Bạn có thể giúp:
+- Đánh giá và phân tích nhân viên
+- Lập kế hoạch dự án và ước tính rủi ro
+- Phân công và ước tính công việc
+- Đưa ra các gợi ý tối ưu hóa quy trình
+
+Hãy trả lời bằng tiếng Việt, ngắn gọn và chuyên nghiệp.</field>
+        </record>
+    </data>
+</odoo>

@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_nhan_vien,nhan_vien.nhan_vien,model_nhan_vien,base.group_user,1,1,1,1
+access_nhan_vien,nhan_vien.access,model_nhan_vien,base.group_user,1,1,1,1
+access_phong_ban,phong_ban.access,model_phong_ban,base.group_user,1,1,1,1
+access_chuc_vu,chuc_vu.access,model_chuc_vu,base.group_user,1,1,1,1
+access_lich_su_lam_viec,lich_su_lam_viec.access,model_lich_su_lam_viec,base.group_user,1,1,1,1
+access_nhan_vien_ky_nang,nhan_vien.ky_nang.access,model_nhan_vien_ky_nang,base.group_user,1,1,1,1
+access_nhan_vien_chung_chi,nhan_vien.chung_chi.access,model_nhan_vien_chung_chi,base.group_user,1,1,1,1
+access_nhan_vien_nguoi_phu_thuoc,nhan_vien.nguoi_phu_thuoc.access,model_nhan_vien_nguoi_phu_thuoc,base.group_user,1,1,1,1
+access_nhan_vien_hop_dong,nhan_vien.hop_dong.access,model_nhan_vien_hop_dong,base.group_user,1,1,1,1

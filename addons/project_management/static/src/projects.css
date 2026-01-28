@@ -1,0 +1,15 @@
+.status-not-started {
+    background-color: #f0f0f0 !important; /* Màu xám nhạt */
+}
+.status-in-progress {
+    background-color: #fff3cd !important; /* Màu vàng nhạt */
+}
+.status-completed {
+    background-color: #d4edda !important; /* Màu xanh lá nhạt */
+}
+.status-delayed {
+    background-color: #d1ecf1 !important; /* Màu xanh dương nhạt */
+}
+.status-cancelled {
+    background-color: #f8d7da !important; /* Màu đỏ nhạt */
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_ai_assistant_root"
+        name="AI Assistant"
+        sequence="5"
+        web_icon="ai_assistant,static/description/icon.png"/>
+
+    <!-- Submenu: Quick Ask -->
+    <menuitem id="menu_ai_quick_ask"
+        name="🤖 Hỏi nhanh AI"
+        parent="menu_ai_assistant_root"
+        action="action_ai_quick_ask_wizard"
+        sequence="5"/>
+
+    <!-- Submenu: Dashboard/Analysis -->
+    <menuitem id="menu_ai_analysis"
+        name="📊 Phân tích AI"
+        parent="menu_ai_assistant_root"
+        action="action_ai_analysis_wizard"
+        sequence="10"/>
+
+    <!-- Submenu: Chat History -->
+    <menuitem id="menu_ai_chat"
+        name="💬 Lịch sử Chat"
+        parent="menu_ai_assistant_root"
+        action="action_ai_chat"
+        sequence="20"/>
+
+    <!-- Submenu: New Chat -->
+    <menuitem id="menu_ai_new_chat"
+        name="✨ Tạo Chat mới"
+        parent="menu_ai_assistant_root"
+        action="action_ai_new_chat"
+        sequence="25"/>
+
+    <!-- Submenu: Configuration -->
+    <menuitem id="menu_ai_config"
+        name="⚙️ Cấu hình"
+        parent="menu_ai_assistant_root"
+        action="action_ai_config"
+        sequence="100"/>
+</odoo>

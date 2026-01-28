@@ -68,6 +68,28 @@ Ngoài ra có thể thêm mổ số parameters như:
 
 Người sử dụng truy cập theo đường dẫn _http://localhost:8069/_ để đăng nhập vào hệ thống.
 
-Hoàn tất
-    
+## 4.1. Cài đặt các Module
+
+Sau khi đăng nhập, vào **Ứng dụng** và cài đặt các module sau (nếu chưa cài):
+- Quản lý Nhân sự (nhan_su)
+- Quản lý Công việc (quan_ly_cong_viec)
+- Quản lý Dự án (quan_ly_du_an)
+- AI Assistant (ai_assistant)
+
+## 4.2. Cấu hình AI Assistant (Quan trọng!)
+
+**Nếu gặp lỗi cảnh báo:** `Chưa cấu hình AI. Vui lòng vào Cấu hình > AI Config để thiết lập`
+
+Vui lòng xem hướng dẫn chi tiết tại: [AI_CONFIG_GUIDE.md](AI_CONFIG_GUIDE.md)
+
+Tóm tắt:
+1. Vào **AI Assistant > Cấu hình**
+2. Nhập API Key từ https://openrouter.ai hoặc dịch vụ AI khác
+3. Nhấn **"Test kết nối"** để xác nhận
+4. Lưu cấu hình
+
+Hoặc chạy script test: `python3 test_ai_config.py`
+
+---
+
 # TTDN-16-05-N5

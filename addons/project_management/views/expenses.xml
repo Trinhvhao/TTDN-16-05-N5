@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_expenses_form" model="ir.ui.view">
+            <field name="name">expenses.form</field>
+            <field name="model">expenses</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            
+                            <!-- <field name="projects_id"/> -->
+                            <field name="budgets_id"/>
+                            <field name="taskss_id"/>
+                            <!-- <field name="expense_ids"/> -->
+                            <field name="expenses_name"/>
+                            <field name="amount"/>
+                            <field name="date"/>
+                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_expenses_tree" model="ir.ui.view">
+            <field name="name">expenses.tree</field>
+            <field name="model">expenses</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- <field name="projects_id"/> -->
+                    <field name="budgets_id"/>
+                    <field name="taskss_id"/>
+                    <!-- <field name="expense_ids"/> -->
+                    <field name="expenses_name"/>
+                    <field name="amount"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_expenses_search" model="ir.ui.view">
+            <field name="name">expenses.search</field>
+            <field name="model">expenses</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- <field name="projects_id"/> -->
+                    <field name="budgets_id"/>
+                    <field name="taskss_id"/>
+                    <!-- <field name="expense_ids"/> -->
+                    <field name="expenses_name"/>
+                    <field name="amount"/>
+                    <field name="date"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_expenses" model="ir.actions.act_window">
+        <field name="name">Chi phí dự án</field>
+            <field name="res_model">expenses</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_expenses_search"/>
+        </record>
+
+        <menuitem id="menu_expenses_root" name="Chi phí dự án"/>
+        <menuitem id="menu_expenses" name="Chi phí" parent="menu_expenses_root" action="action_expenses"/>
+    </data>
+</odoo>

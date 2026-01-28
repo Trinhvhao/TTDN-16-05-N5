@@ -920,6 +920,11 @@ odoo.define("web/static/src/js/control_panel/control_panel_model_extension.js", 
          * @param {Object} attrs
          */
         _extractAttributes(filter, attrs) {
+            // Defensive guard to surface misconfigured search filters instead of crashing the whole control panel.
+            if (!filter || !filter.type) {
+                console.warn('ControlPanel: missing filter type', filter, attrs);
+                return;
+            }
             if (attrs.isDefault) {
                 filter.isDefault = attrs.isDefault;
             }
@@ -930,6 +935,10 @@ odoo.define("web/static/src/js/control_panel/control_panel_model_extension.js", 
                         filter.context = attrs.context;
                     }
                     if (attrs.date) {
+                        if (!this.fields[attrs.date]) {
+                            console.warn('ControlPanel: date filter field not found', attrs.date, attrs);
+                            return;
+                        }
                         filter.isDateFilter = true;
                         filter.hasOptions = true;
                         filter.fieldName = attrs.date;
@@ -944,7 +953,11 @@ odoo.define("web/static/src/js/control_panel/control_panel_model_extension.js", 
                     break;
                 case 'groupBy':
                     filter.fieldName = attrs.fieldName;
-                    filter.fieldType = this.fields[attrs.fieldName].type;
+                    if (!this.fields[filter.fieldName]) {
+                        console.warn('ControlPanel: groupBy field not found', filter.fieldName, attrs);
+                        return;
+                    }
+                    filter.fieldType = this.fields[filter.fieldName].type;
                     if (['date', 'datetime'].includes(filter.fieldType)) {
                         filter.hasOptions = true;
                         filter.defaultOptionId = attrs.defaultInterval || DEFAULT_INTERVAL;
@@ -955,6 +968,10 @@ odoo.define("web/static/src/js/control_panel/control_panel_model_extension.js", 
                     break;
                 case 'field': {
                     const field = this.fields[attrs.name];
+                    if (!field) {
+                        console.warn('ControlPanel: search field not found', attrs.name, attrs);
+                        return;
+                    }
                     filter.fieldName = attrs.name;
                     filter.fieldType = field.type;
                     if (attrs.domain) {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Sequence for Công việc -->
+    <record id="seq_cong_viec" model="ir.sequence">
+        <field name="name">Mã công việc</field>
+        <field name="code">cong_viec.sequence</field>
+        <field name="prefix">CV</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Demo Tags -->
+    <record id="tag_urgent" model="cong_viec.tag">
+        <field name="name">Khẩn cấp</field>
+        <field name="color">1</field>
+    </record>
+
+    <record id="tag_bug" model="cong_viec.tag">
+        <field name="name">Bug</field>
+        <field name="color">4</field>
+    </record>
+
+    <record id="tag_feature" model="cong_viec.tag">
+        <field name="name">Tính năng mới</field>
+        <field name="color">10</field>
+    </record>
+
+    <record id="tag_improvement" model="cong_viec.tag">
+        <field name="name">Cải tiến</field>
+        <field name="color">3</field>
+    </record>
+
+    <record id="tag_research" model="cong_viec.tag">
+        <field name="name">Nghiên cứu</field>
+        <field name="color">5</field>
+    </record>
+
+    <record id="tag_documentation" model="cong_viec.tag">
+        <field name="name">Tài liệu</field>
+        <field name="color">6</field>
+    </record>
+</odoo>

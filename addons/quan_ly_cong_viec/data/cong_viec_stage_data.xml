@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default Task Stages -->
+        
+        <record id="stage_backlog" model="cong_viec.trang_thai">
+            <field name="name">Backlog</field>
+            <field name="sequence">1</field>
+            <field name="stage_type">new</field>
+            <field name="fold" eval="False"/>
+            <field name="color">7</field>
+            <field name="description">Công việc đang chờ trong backlog</field>
+        </record>
+
+        <record id="stage_chua_lam" model="cong_viec.trang_thai">
+            <field name="name">Chưa làm</field>
+            <field name="sequence">5</field>
+            <field name="stage_type">new</field>
+            <field name="fold" eval="False"/>
+            <field name="color">2</field>
+            <field name="description">Công việc chưa bắt đầu</field>
+        </record>
+
+        <record id="stage_dang_lam" model="cong_viec.trang_thai">
+            <field name="name">Đang làm</field>
+            <field name="sequence">10</field>
+            <field name="stage_type">in_progress</field>
+            <field name="fold" eval="False"/>
+            <field name="color">4</field>
+            <field name="description">Công việc đang được thực hiện</field>
+        </record>
+
+        <record id="stage_review" model="cong_viec.trang_thai">
+            <field name="name">Review</field>
+            <field name="sequence">15</field>
+            <field name="stage_type">review</field>
+            <field name="fold" eval="False"/>
+            <field name="color">3</field>
+            <field name="description">Công việc đang được review</field>
+        </record>
+
+        <record id="stage_cho_kiem_tra" model="cong_viec.trang_thai">
+            <field name="name">Chờ kiểm tra</field>
+            <field name="sequence">18</field>
+            <field name="stage_type">review</field>
+            <field name="fold" eval="False"/>
+            <field name="color">5</field>
+            <field name="description">Công việc đang chờ kiểm tra</field>
+        </record>
+
+        <record id="stage_hoan_thanh" model="cong_viec.trang_thai">
+            <field name="name">Hoàn thành</field>
+            <field name="sequence">20</field>
+            <field name="stage_type">done</field>
+            <field name="fold" eval="True"/>
+            <field name="color">10</field>
+            <field name="description">Công việc đã hoàn thành</field>
+        </record>
+
+        <record id="stage_huy_bo" model="cong_viec.trang_thai">
+            <field name="name">Hủy bỏ</field>
+            <field name="sequence">25</field>
+            <field name="stage_type">cancelled</field>
+            <field name="fold" eval="True"/>
+            <field name="color">1</field>
+            <field name="description">Công việc đã bị hủy bỏ</field>
+        </record>
+
+    </data>
+</odoo>

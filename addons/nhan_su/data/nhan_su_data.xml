@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Sequence for Nhân viên -->
+    <record id="seq_nhan_vien" model="ir.sequence">
+        <field name="name">Mã nhân viên</field>
+        <field name="code">nhan_vien.sequence</field>
+        <field name="prefix">NV</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Sequence for Hợp đồng -->
+    <record id="seq_hop_dong" model="ir.sequence">
+        <field name="name">Mã hợp đồng</field>
+        <field name="code">nhan_vien.hop_dong</field>
+        <field name="prefix">HD</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Demo Kỹ năng -->
+    <record id="ky_nang_python" model="nhan_vien.ky_nang">
+        <field name="name">Python</field>
+        <field name="loai_ky_nang">ky_thuat</field>
+        <field name="color">4</field>
+    </record>
+
+    <record id="ky_nang_javascript" model="nhan_vien.ky_nang">
+        <field name="name">JavaScript</field>
+        <field name="loai_ky_nang">ky_thuat</field>
+        <field name="color">10</field>
+    </record>
+
+    <record id="ky_nang_sql" model="nhan_vien.ky_nang">
+        <field name="name">SQL</field>
+        <field name="loai_ky_nang">ky_thuat</field>
+        <field name="color">3</field>
+    </record>
+
+    <record id="ky_nang_odoo" model="nhan_vien.ky_nang">
+        <field name="name">Odoo</field>
+        <field name="loai_ky_nang">ky_thuat</field>
+        <field name="color">5</field>
+    </record>
+
+    <record id="ky_nang_giao_tiep" model="nhan_vien.ky_nang">
+        <field name="name">Giao tiếp</field>
+        <field name="loai_ky_nang">mem</field>
+        <field name="color">1</field>
+    </record>
+
+    <record id="ky_nang_quan_ly" model="nhan_vien.ky_nang">
+        <field name="name">Quản lý dự án</field>
+        <field name="loai_ky_nang">quan_ly</field>
+        <field name="color">2</field>
+    </record>
+
+    <record id="ky_nang_tieng_anh" model="nhan_vien.ky_nang">
+        <field name="name">Tiếng Anh</field>
+        <field name="loai_ky_nang">ngoai_ngu</field>
+        <field name="color">6</field>
+    </record>
+
+    <record id="ky_nang_teamwork" model="nhan_vien.ky_nang">
+        <field name="name">Làm việc nhóm</field>
+        <field name="loai_ky_nang">mem</field>
+        <field name="color">9</field>
+    </record>
+
+    <!-- Demo Phòng ban và Chức vụ -->
+    <data noupdate="1">
+        <record id="phong_ban_cntt" model="phong_ban">
+            <field name="ma_phong_ban">IT</field>
+            <field name="ten_phong_ban">Phòng Công nghệ thông tin</field>
+            <field name="mo_ta">Phòng phát triển và quản lý hệ thống CNTT</field>
+        </record>
+
+        <record id="phong_ban_kinh_doanh" model="phong_ban">
+            <field name="ma_phong_ban">SALES</field>
+            <field name="ten_phong_ban">Phòng Kinh doanh</field>
+            <field name="mo_ta">Phòng kinh doanh và chăm sóc khách hàng</field>
+        </record>
+
+        <record id="chuc_vu_pm" model="chuc_vu">
+            <field name="ma_chuc_vu">PM</field>
+            <field name="ten_chuc_vu">Project Manager</field>
+            <field name="cap_bac">5</field>
+            <field name="mo_ta">Quản lý dự án</field>
+        </record>
+
+        <record id="chuc_vu_tl" model="chuc_vu">
+            <field name="ma_chuc_vu">TL</field>
+            <field name="ten_chuc_vu">Team Leader</field>
+            <field name="cap_bac">4</field>
+            <field name="mo_ta">Trưởng nhóm</field>
+        </record>
+
+        <record id="chuc_vu_dev" model="chuc_vu">
+            <field name="ma_chuc_vu">DEV</field>
+            <field name="ten_chuc_vu">Developer</field>
+            <field name="cap_bac">3</field>
+            <field name="mo_ta">Lập trình viên</field>
+        </record>
+    </data>
+
+    <!-- Demo Nhân viên -->
+    <data noupdate="1">
+        <record id="demo_nhan_vien_1" model="nhan_vien">
+            <field name="ten">An</field>
+            <field name="ho_ten_dem">Nguyễn Văn</field>
+            <field name="email">nva@company.com</field>
+            <field name="dien_thoai">0901234567</field>
+            <field name="phong_ban_id" ref="phong_ban_cntt"/>
+            <field name="chuc_vu_id" ref="chuc_vu_pm"/>
+            <field name="ngay_vao_lam" eval="(datetime.now() - timedelta(days=730)).strftime('%Y-%m-%d')"/>
+            <field name="luong_co_ban">25000000</field>
+            <field name="trang_thai">dang_lam</field>
+            <field name="ky_nang_ids" eval="[(6, 0, [ref('ky_nang_quan_ly'), ref('ky_nang_tieng_anh'), ref('ky_nang_giao_tiep')])]"/>
+        </record>
+
+        <record id="demo_nhan_vien_2" model="nhan_vien">
+            <field name="ten">Bình</field>
+            <field name="ho_ten_dem">Trần Thị</field>
+            <field name="email">ttb@company.com</field>
+            <field name="dien_thoai">0901234568</field>
+            <field name="phong_ban_id" ref="phong_ban_cntt"/>
+            <field name="chuc_vu_id" ref="chuc_vu_tl"/>
+            <field name="ngay_vao_lam" eval="(datetime.now() - timedelta(days=550)).strftime('%Y-%m-%d')"/>
+            <field name="luong_co_ban">22000000</field>
+            <field name="trang_thai">dang_lam</field>
+            <field name="ky_nang_ids" eval="[(6, 0, [ref('ky_nang_python'), ref('ky_nang_odoo'), ref('ky_nang_sql'), ref('ky_nang_teamwork')])]"/>
+        </record>
+
+        <record id="demo_nhan_vien_3" model="nhan_vien">
+            <field name="ten">Cường</field>
+            <field name="ho_ten_dem">Lê Văn</field>
+            <field name="email">lvc@company.com</field>
+            <field name="dien_thoai">0901234569</field>
+            <field name="phong_ban_id" ref="phong_ban_cntt"/>
+            <field name="chuc_vu_id" ref="chuc_vu_dev"/>
+            <field name="ngay_vao_lam" eval="(datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')"/>
+            <field name="luong_co_ban">18000000</field>
+            <field name="trang_thai">dang_lam</field>
+            <field name="ky_nang_ids" eval="[(6, 0, [ref('ky_nang_python'), ref('ky_nang_javascript'), ref('ky_nang_sql')])]"/>
+        </record>
+
+        <record id="demo_nhan_vien_4" model="nhan_vien">
+            <field name="ten">Dung</field>
+            <field name="ho_ten_dem">Phạm Thị</field>
+            <field name="email">ptd@company.com</field>
+            <field name="dien_thoai">0901234570</field>
+            <field name="phong_ban_id" ref="phong_ban_cntt"/>
+            <field name="chuc_vu_id" ref="chuc_vu_dev"/>
+            <field name="ngay_vao_lam" eval="(datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')"/>
+            <field name="luong_co_ban">16000000</field>
+            <field name="trang_thai">dang_lam</field>
+            <field name="ky_nang_ids" eval="[(6, 0, [ref('ky_nang_javascript'), ref('ky_nang_odoo')])]"/>
+        </record>
+    </data>
+</odoo>

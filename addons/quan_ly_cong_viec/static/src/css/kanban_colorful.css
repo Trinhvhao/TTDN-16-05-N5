@@ -1,0 +1,145 @@
+/* Colorful Kanban Columns */
+
+/* Backlog - Purple */
+.o_kanban_task_colorful .o_kanban_group:nth-child(1) .o_kanban_header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(1) .o_kanban_header .o_column_title {
+    color: white !important;
+    font-weight: bold;
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(1) .o_kanban_header .o_kanban_counter {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Chưa làm - Blue */
+.o_kanban_task_colorful .o_kanban_group:nth-child(2) .o_kanban_header {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(2) .o_kanban_header .o_column_title {
+    color: white !important;
+    font-weight: bold;
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(2) .o_kanban_header .o_kanban_counter {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Đang làm - Orange */
+.o_kanban_task_colorful .o_kanban_group:nth-child(3) .o_kanban_header {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(3) .o_kanban_header .o_column_title {
+    color: white !important;
+    font-weight: bold;
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(3) .o_kanban_header .o_kanban_counter {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Review - Cyan */
+.o_kanban_task_colorful .o_kanban_group:nth-child(4) .o_kanban_header {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(4) .o_kanban_header .o_column_title {
+    color: white !important;
+    font-weight: bold;
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(4) .o_kanban_header .o_kanban_counter {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Chờ kiểm tra - Pink */
+.o_kanban_task_colorful .o_kanban_group:nth-child(5) .o_kanban_header {
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(5) .o_kanban_header .o_column_title {
+    color: white !important;
+    font-weight: bold;
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(5) .o_kanban_header .o_kanban_counter {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Hoàn thành - Green */
+.o_kanban_task_colorful .o_kanban_group:nth-child(6) .o_kanban_header {
+    background: #f0f0f0;
+    color: #000;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(6) .o_kanban_header .o_column_title {
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(6) .o_kanban_header .o_kanban_counter {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+/* Hủy bỏ - Red */
+.o_kanban_task_colorful .o_kanban_group:nth-child(7) .o_kanban_header {
+    background: #f0f0f0;
+    color: #000;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(7) .o_kanban_header .o_column_title {
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.o_kanban_task_colorful .o_kanban_group:nth-child(7) .o_kanban_header .o_kanban_counter {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+/* Làm cho kanban cards đẹp hơn với shadow nhẹ */
+.o_kanban_task_colorful .oe_kanban_card {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    transition: all 0.3s ease;
+}
+
+.o_kanban_task_colorful .oe_kanban_card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}

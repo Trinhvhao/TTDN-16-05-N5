@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend Phòng ban form view to add dự án tab -->
+    <record id="view_phong_ban_form_extend" model="ir.ui.view">
+        <field name="name">phong.ban.form.extend.du.an</field>
+        <field name="model">phong_ban</field>
+        <field name="inherit_id" ref="nhan_su.view_phong_ban_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='nhan_vien']" position="after">
+                <page string="Dự án" name="du_an">
+                    <field name="du_an_ids">
+                        <tree decoration-success="trang_thai=='hoan_thanh'" decoration-warning="trang_thai=='dang_thuc_hien'">
+                            <field name="ma_du_an"/>
+                            <field name="ten_du_an"/>
+                            <field name="quan_ly_du_an_id"/>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                            <field name="trang_thai"/>
+                            <field name="tien_do" widget="progressbar"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Nhân viên form view to add dự án tham gia tab -->
+    <record id="view_nhan_vien_form_extend_du_an" model="ir.ui.view">
+        <field name="name">nhan.vien.form.extend.du.an</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='lich_su']" position="after">
+                <page string="Dự án tham gia" name="du_an">
+                    <field name="du_an_ids">
+                        <tree decoration-success="trang_thai=='hoan_thanh'" decoration-warning="trang_thai=='dang_thuc_hien'">
+                            <field name="ma_du_an"/>
+                            <field name="ten_du_an"/>
+                            <field name="quan_ly_du_an_id"/>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                            <field name="trang_thai"/>
+                            <field name="tien_do" widget="progressbar"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

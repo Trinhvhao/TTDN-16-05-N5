@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Cron Job: Tạo công việc định kỳ hàng ngày -->
+        <record id="ir_cron_create_recurring_tasks" model="ir.cron">
+            <field name="name">Tạo công việc định kỳ</field>
+            <field name="model_id" ref="model_cong_viec"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_create_recurring_tasks()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

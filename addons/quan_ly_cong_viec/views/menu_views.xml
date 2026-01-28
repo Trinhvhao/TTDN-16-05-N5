@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_quan_ly_cong_viec_root"
+        name="Quản Lý Công Việc"
+        sequence="25"
+        web_icon="quan_ly_cong_viec,static/description/icon.png"/>
+
+    <!-- Submenu: Công việc -->
+    <menuitem id="menu_cong_viec"
+        name="Tất cả công việc"
+        parent="menu_quan_ly_cong_viec_root"
+        action="action_cong_viec"
+        sequence="10"/>
+
+    <!-- Submenu: Công việc của tôi -->
+    <menuitem id="menu_cong_viec_cua_toi"
+        name="Công việc của tôi"
+        parent="menu_quan_ly_cong_viec_root"
+        action="action_cong_viec_cua_toi"
+        sequence="15"/>
+
+    <!-- Submenu: Công việc trễ hạn -->
+    <menuitem id="menu_cong_viec_tre_han"
+        name="Công việc trễ hạn"
+        parent="menu_quan_ly_cong_viec_root"
+        action="action_cong_viec_tre_han"
+        sequence="20"/>
+
+    <!-- Submenu: Timesheet -->
+    <menuitem id="menu_timesheet"
+        name="Timesheet"
+        parent="menu_quan_ly_cong_viec_root"
+        action="action_timesheet"
+        sequence="25"/>
+
+    <!-- Submenu: Báo cáo -->
+    <menuitem id="menu_bao_cao"
+        name="Báo cáo"
+        parent="menu_quan_ly_cong_viec_root"
+        sequence="50"/>
+
+    <!-- Submenu: Hiệu suất nhân viên -->
+    <menuitem id="menu_hieu_suat_nhan_vien"
+        name="Hiệu suất nhân viên"
+        parent="menu_bao_cao"
+        action="action_hieu_suat_nhan_vien"
+        sequence="10"/>
+
+    <!-- Submenu: Hiệu suất dự án -->
+    <menuitem id="menu_hieu_suat_du_an"
+        name="Hiệu suất dự án"
+        parent="menu_bao_cao"
+        action="action_hieu_suat_du_an"
+        sequence="20"/>
+
+    <!-- Submenu: Cấu hình -->
+    <menuitem id="menu_cau_hinh"
+        name="Cấu hình"
+        parent="menu_quan_ly_cong_viec_root"
+        sequence="100"/>
+
+    <!-- Submenu: Nhãn công việc -->
+    <menuitem id="menu_cong_viec_tag"
+        name="Nhãn công việc"
+        parent="menu_cau_hinh"
+        action="action_cong_viec_tag"
+        sequence="10"/>
+
+    <!-- Submenu: Trạng thái công việc -->
+    <menuitem id="menu_cong_viec_trang_thai"
+        name="Trạng thái công việc"
+        parent="menu_cau_hinh"
+        action="action_cong_viec_trang_thai"
+        sequence="20"/>
+</odoo>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Hiệu suất nhân viên - Tree View -->
+    <record id="view_hieu_suat_nhan_vien_tree" model="ir.ui.view">
+        <field name="name">hieu.suat.nhan.vien.tree</field>
+        <field name="model">hieu_suat.nhan_vien</field>
+        <field name="arch" type="xml">
+            <tree string="Hiệu suất nhân viên" create="false" edit="false" delete="false"
+                  decoration-success="ty_le_hoan_thanh >= 80"
+                  decoration-warning="ty_le_hoan_thanh >= 50 and ty_le_hoan_thanh &lt; 80"
+                  decoration-danger="ty_le_hoan_thanh &lt; 50">
+                <field name="nhan_vien_id"/>
+                <field name="phong_ban_id"/>
+                <field name="tong_cong_viec"/>
+                <field name="cong_viec_hoan_thanh"/>
+                <field name="cong_viec_dang_lam"/>
+                <field name="cong_viec_chua_lam"/>
+                <field name="cong_viec_tre_han" decoration-danger="cong_viec_tre_han > 0"/>
+                <field name="ty_le_hoan_thanh" widget="progressbar"/>
+                <field name="ty_le_dung_han"/>
+                <field name="tien_do_trung_binh"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Hiệu suất nhân viên - Pivot View -->
+    <record id="view_hieu_suat_nhan_vien_pivot" model="ir.ui.view">
+        <field name="name">hieu.suat.nhan.vien.pivot</field>
+        <field name="model">hieu_suat.nhan_vien</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân tích hiệu suất nhân viên">
+                <field name="phong_ban_id" type="row"/>
+                <field name="nhan_vien_id" type="row"/>
+                <field name="tong_cong_viec" type="measure"/>
+                <field name="cong_viec_hoan_thanh" type="measure"/>
+                <field name="ty_le_hoan_thanh" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Hiệu suất nhân viên - Graph View -->
+    <record id="view_hieu_suat_nhan_vien_graph" model="ir.ui.view">
+        <field name="name">hieu.suat.nhan.vien.graph</field>
+        <field name="model">hieu_suat.nhan_vien</field>
+        <field name="arch" type="xml">
+            <graph string="Biểu đồ hiệu suất nhân viên" type="bar">
+                <field name="nhan_vien_id"/>
+                <field name="ty_le_hoan_thanh" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Hiệu suất nhân viên - Search View -->
+    <record id="view_hieu_suat_nhan_vien_search" model="ir.ui.view">
+        <field name="name">hieu.suat.nhan.vien.search</field>
+        <field name="model">hieu_suat.nhan_vien</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm hiệu suất">
+                <field name="nhan_vien_id"/>
+                <field name="phong_ban_id"/>
+                <filter name="filter_hieu_suat_cao" string="Hiệu suất cao (>=80%)" domain="[('ty_le_hoan_thanh', '>=', 80)]"/>
+                <filter name="filter_hieu_suat_tb" string="Hiệu suất TB (50-80%)" domain="[('ty_le_hoan_thanh', '>=', 50), ('ty_le_hoan_thanh', '&lt;', 80)]"/>
+                <filter name="filter_hieu_suat_thap" string="Hiệu suất thấp (&lt;50%)" domain="[('ty_le_hoan_thanh', '&lt;', 50)]"/>
+                <filter name="filter_co_tre_han" string="Có công việc trễ hạn" domain="[('cong_viec_tre_han', '>', 0)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter name="group_phong_ban" string="Phòng ban" context="{'group_by': 'phong_ban_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Hiệu suất nhân viên -->
+    <record id="action_hieu_suat_nhan_vien" model="ir.actions.act_window">
+        <field name="name">Hiệu suất nhân viên</field>
+        <field name="res_model">hieu_suat.nhan_vien</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="search_view_id" ref="view_hieu_suat_nhan_vien_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có dữ liệu hiệu suất
+            </p>
+            <p>
+                Theo dõi hiệu suất làm việc của từng nhân viên dựa trên các công việc được giao.
+            </p>
+        </field>
+    </record>
+
+    <!-- Hiệu suất dự án - Tree View -->
+    <record id="view_hieu_suat_du_an_tree" model="ir.ui.view">
+        <field name="name">hieu.suat.du.an.tree</field>
+        <field name="model">hieu_suat.du_an</field>
+        <field name="arch" type="xml">
+            <tree string="Hiệu suất dự án" create="false" edit="false" delete="false"
+                  decoration-success="trang_thai == 'hoan_thanh'"
+                  decoration-warning="trang_thai == 'dang_thuc_hien'"
+                  decoration-muted="trang_thai == 'huy_bo'">
+                <field name="du_an_id"/>
+                <field name="quan_ly_du_an_id"/>
+                <field name="phong_ban_id"/>
+                <field name="trang_thai"/>
+                <field name="tong_cong_viec"/>
+                <field name="cong_viec_hoan_thanh"/>
+                <field name="cong_viec_dang_lam"/>
+                <field name="cong_viec_tre_han" decoration-danger="cong_viec_tre_han > 0"/>
+                <field name="tien_do" widget="progressbar"/>
+                <field name="so_thanh_vien"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Hiệu suất dự án - Pivot View -->
+    <record id="view_hieu_suat_du_an_pivot" model="ir.ui.view">
+        <field name="name">hieu.suat.du.an.pivot</field>
+        <field name="model">hieu_suat.du_an</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân tích hiệu suất dự án">
+                <field name="phong_ban_id" type="row"/>
+                <field name="trang_thai" type="col"/>
+                <field name="tong_cong_viec" type="measure"/>
+                <field name="tien_do" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Hiệu suất dự án - Graph View -->
+    <record id="view_hieu_suat_du_an_graph" model="ir.ui.view">
+        <field name="name">hieu.suat.du.an.graph</field>
+        <field name="model">hieu_suat.du_an</field>
+        <field name="arch" type="xml">
+            <graph string="Biểu đồ hiệu suất dự án" type="bar">
+                <field name="du_an_id"/>
+                <field name="tien_do" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Hiệu suất dự án - Search View -->
+    <record id="view_hieu_suat_du_an_search" model="ir.ui.view">
+        <field name="name">hieu.suat.du.an.search</field>
+        <field name="model">hieu_suat.du_an</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm hiệu suất dự án">
+                <field name="du_an_id"/>
+                <field name="quan_ly_du_an_id"/>
+                <field name="phong_ban_id"/>
+                <field name="trang_thai" invisible="1"/>
+                <filter name="filter_dang_thuc_hien" string="Đang thực hiện" domain="[('trang_thai', '=', 'dang_thuc_hien')]"/>
+                <filter name="filter_hoan_thanh" string="Hoàn thành" domain="[('trang_thai', '=', 'hoan_thanh')]"/>
+                <filter name="filter_co_tre_han" string="Có công việc trễ hạn" domain="[('cong_viec_tre_han', '>', 0)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter name="group_phong_ban" string="Phòng ban" context="{'group_by': 'phong_ban_id'}"/>
+                    <filter name="group_quan_ly" string="Quản lý" context="{'group_by': 'quan_ly_du_an_id'}"/>
+                    <filter name="group_trang_thai" string="Trạng thái" context="{'group_by': 'trang_thai'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Hiệu suất dự án -->
+    <record id="action_hieu_suat_du_an" model="ir.actions.act_window">
+        <field name="name">Hiệu suất dự án</field>
+        <field name="res_model">hieu_suat.du_an</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="search_view_id" ref="view_hieu_suat_du_an_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có dữ liệu hiệu suất
+            </p>
+            <p>
+                Theo dõi hiệu suất của các dự án dựa trên tiến độ công việc.
+            </p>
+        </field>
+    </record>
+</odoo>
